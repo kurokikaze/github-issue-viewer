@@ -38,7 +38,7 @@ const App = () => {
         <Stack.Screen
           name="IssueViewer"
           component={IssueViewerScreen}
-          options={{title: 'Browse Issues'}}
+          options={{title: 'Issue Viewer'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

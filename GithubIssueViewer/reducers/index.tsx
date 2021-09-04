@@ -1,6 +1,7 @@
 import {
   Action,
   FETCH_ISSUES_FAILURE,
+  FETCH_ISSUES_INIT,
   FETCH_ISSUES_SUCCESS,
   FETCH_REPOS_FAILURE,
   FETCH_REPOS_INIT,
@@ -40,6 +41,11 @@ const reducer = (
       return {
         ...state,
         loading: false,
+      };
+    case FETCH_ISSUES_INIT:
+      return {
+        ...state,
+        loading: true,
       };
     case FETCH_ISSUES_SUCCESS:
       console.log(JSON.stringify(action.issues, null, 2));

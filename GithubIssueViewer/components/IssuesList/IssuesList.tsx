@@ -13,6 +13,7 @@ import Section from '../Section/Section';
 import styles from './styles';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {pluralize} from '../../utils';
 import {GithubIssueResponse} from '../../types';
 
 type IssuesListProps = {
@@ -26,16 +27,25 @@ const IssuesList = ({onSelectIssue}: IssuesListProps) => {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <Section title={`${issues.length} issues`}>
-      <ScrollView style={styles.reposContainer}>
+    <Section title="">
+      <Text style={styles.issuesCount}>
+        {pluralize({
+          singular: 'issue',
+          plural: 'issues',
+          empty: 'No issues',
+          count: issues.length,
+        })}
+      </Text>
+      <ScrollView style={styles.issuesContainer}>
         {isLoading && <ActivityIndicator size="large" />}
-        {issues.length > 0 &&
+        {!isLoading &&
+          issues.length > 0 &&
           issues.map(issue => (
             <View key={issue.id}>
               <Text
                 onPress={() => onSelectIssue(issue)}
                 style={[
-                  styles.repoName,
+                  styles.issueTitle,
                   {
                     color: isDarkMode ? Colors.white : Colors.black,
                   },

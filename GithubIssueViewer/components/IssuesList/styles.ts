@@ -1,14 +1,20 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-  reposContainer: {
+  issuesCount: {
+    fontSize: 24,
+    fontWeight: '600',
+    flex: 1,
+  },
+  issuesContainer: {
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
   },
-  repoName: {
-    fontSize: 24,
-    fontWeight: '600',
+  issueTitle: {
+    fontSize: 18,
+    fontWeight: 'normal',
+    flex: 1,
   },
 });
 
