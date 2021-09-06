@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import {AppRegistry} from 'react-native';
-import App from './components/App/App';
+import App from './src/components/App/App';
 import {name as appName} from './app.json';
 import {Provider} from 'react-redux';
 
