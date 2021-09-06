@@ -7,6 +7,7 @@ import {
   View,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import {fetchReposPage} from '../../actions';
 import {
   getRepos,
   getReposLoading,
@@ -19,7 +20,6 @@ import {ThemeContext} from '../ThemeContext/ThemeContext';
 import {pluralize} from '../../utils';
 
 import styles from './styles';
-import {fetchReposPage} from '../../actions';
 import {Pagination} from '../Pagination/Pagination';
 
 type ReposListProps = {
@@ -46,39 +46,45 @@ const ReposList = ({onSelectRepo}: ReposListProps) => {
         <Pagination
           links={pagination}
           page={page}
+          loading={isLoading}
           onPageChange={newPage => dispatch(fetchReposPage(newPage))}
         />
       ) : null}
-      <ScrollView style={styles.reposContainer}>
-        {githubRepos.length > 0 &&
-          githubRepos.map(repo => (
-            <View key={repo.id}>
-              <Text
-                onPress={() => repo.open_issues_count > 0 && onSelectRepo(repo)}
-                style={[
-                  theme.textStyle,
-                  styles.repoName,
-                  repo.open_issues_count > 0 && linkRepoStyle,
-                ]}>
-                {repo.name}{' '}
-                {repo.open_issues_count > 0 &&
-                  `(${pluralize({
-                    singular: 'open issue',
-                    plural: 'open issues',
-                    empty: '',
-                    count: repo.open_issues_count,
-                  })})`}
-              </Text>
-            </View>
-          ))}
-      </ScrollView>
-      {isLoading && (
-        <ActivityIndicator size={500} style={styles.overlayIndicator} />
-      )}
+      <View>
+        <ScrollView style={styles.reposContainer}>
+          {githubRepos.length > 0 &&
+            githubRepos.map(repo => (
+              <View key={repo.id}>
+                <Text
+                  onPress={() =>
+                    repo.open_issues_count > 0 && onSelectRepo(repo)
+                  }
+                  style={[
+                    theme.textStyle,
+                    styles.repoName,
+                    repo.open_issues_count > 0 && linkRepoStyle,
+                  ]}>
+                  {repo.name}{' '}
+                  {repo.open_issues_count > 0 &&
+                    `(${pluralize({
+                      singular: 'open issue',
+                      plural: 'open issues',
+                      empty: '',
+                      count: repo.open_issues_count,
+                    })})`}
+                </Text>
+              </View>
+            ))}
+        </ScrollView>
+        {isLoading && (
+          <ActivityIndicator size={300} style={styles.overlayIndicator} />
+        )}
+      </View>
       {githubRepos.length ? (
         <Pagination
           links={pagination}
           page={page}
+          loading={isLoading}
           onPageChange={newPage =>
             !isLoading && dispatch(fetchReposPage(newPage))
           }

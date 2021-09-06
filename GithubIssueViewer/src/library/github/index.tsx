@@ -1,4 +1,5 @@
 import {Observable} from 'rxjs';
+import {URL} from 'react-native-url-polyfill';
 import {
   Action,
   fetchUserSuccess,
@@ -15,6 +16,10 @@ import {
   GithubUserResponse,
 } from '../../types';
 import {parsePagination} from './utils';
+import {
+  FilterType,
+  FILTER_OPEN,
+} from '../../components/IssuesFilter/IssuesFilter';
 
 type UserResponse = GithubUserResponse | GithubNotFoundResponse;
 
@@ -46,7 +51,10 @@ export const fetchGithubRepos = (
   page: number = 1,
 ): Observable<Action> =>
   new Observable(observer => {
-    fetch(`https://api.github.com/users/${username}/repos?page=${page}`)
+    const url = new URL(`https://api.github.com/users/${username}/repos`);
+    url.searchParams.append('page', page.toString(10));
+
+    fetch(url.toString())
       .then(async response => {
         return {
           result: await response.json(),
@@ -56,7 +64,12 @@ export const fetchGithubRepos = (
       .then(({result, pagination}: ReposResponse) => {
         if (result instanceof Array) {
           observer.next(
-            fetchReposSuccess(username, result, parsePagination(pagination), page),
+            fetchReposSuccess(
+              username,
+              result,
+              parsePagination(pagination),
+              page,
+            ),
           );
         } else {
           observer.next(fetchReposFailure('Not Found'));
@@ -78,11 +91,18 @@ export const fetchGithubIssues = (
   username: string,
   repo: string,
   page: number = 1,
+  filter: FilterType = FILTER_OPEN,
 ): Observable<Action> =>
   new Observable(observer => {
-    fetch(
-      `https://api.github.com/repos/${username}/${repo}/issues?page=${page}`,
-    )
+    const url = new URL(
+      `https://api.github.com/repos/${username}/${repo}/issues`,
+    );
+    url.searchParams.append('page', page.toString(10));
+    if (filter !== FILTER_OPEN) {
+      url.searchParams.append('state', filter);
+    }
+    console.log(url.toString());
+    fetch(url.toString())
       .then(async response => ({
         result: await response.json(),
         pagination: response.headers.get('link') || '',

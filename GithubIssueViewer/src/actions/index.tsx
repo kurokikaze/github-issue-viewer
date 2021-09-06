@@ -1,3 +1,4 @@
+import {FilterType, FILTER_ALL} from '../components/IssuesFilter/IssuesFilter';
 import {
   GithubIssuesResponse,
   GithubReposResponse,
@@ -20,6 +21,7 @@ export const FETCH_ISSUES_INIT = 'actions/fetch_issues_init';
 export const FETCH_ISSUES_SUCCESS = 'actions/fetch_issues_success';
 export const FETCH_ISSUES_FAILURE = 'actions/fetch_issues_failure';
 export const FETCH_ISSUES_PAGE = 'actions/fetch_issues_page';
+export const CHANGE_ISSUES_FILTER = 'actions/change_issues_filter';
 
 export const FETCH_SINGLE_ISSUE_INIT = 'actions/fetch_single_issue_init';
 export const FETCH_SINGLE_ISSUE_SUCCESS = 'actions/fetch_single_issue_success';
@@ -127,13 +129,21 @@ export type FetchIssuesInitAction = {
   user: string;
   repo: string;
   page: number;
+  filter: FilterType;
 };
 
 export const fetchIssuesInit = (
   user: string,
   repo: string,
   page: number = 1,
-): FetchIssuesInitAction => ({type: FETCH_ISSUES_INIT, user, repo, page});
+  filter: FilterType = FILTER_ALL,
+): FetchIssuesInitAction => ({
+  type: FETCH_ISSUES_INIT,
+  user,
+  repo,
+  page,
+  filter,
+});
 
 export type FetchIssuesPageAction = {
   type: typeof FETCH_ISSUES_PAGE;
@@ -143,6 +153,16 @@ export type FetchIssuesPageAction = {
 export const fetchIssuesPage = (page: number): FetchIssuesPageAction => ({
   type: FETCH_ISSUES_PAGE,
   page,
+});
+
+export type ChangeIssuesFilter = {
+  type: typeof CHANGE_ISSUES_FILTER;
+  filter: FilterType;
+};
+
+export const changeIssuesFilter = (filter: FilterType): ChangeIssuesFilter => ({
+  type: CHANGE_ISSUES_FILTER,
+  filter,
 });
 
 export type FetchIssuesSuccessAction = {
@@ -183,10 +203,12 @@ export type Action =
   | FetchReposInitAction
   | FetchReposSuccessAction
   | FetchReposFailureAction
+  | FetchReposPageAction
   | FetchUserInitAction
   | FetchUserSuccessAction
   | FetchUserFailureAction
   | FetchIssuesInitAction
   | FetchIssuesSuccessAction
   | FetchIssuesFailureAction
-  | FetchIssuesPageAction;
+  | FetchIssuesPageAction
+  | ChangeIssuesFilter;

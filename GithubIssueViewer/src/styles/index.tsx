@@ -2,8 +2,8 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   sectionContainer: {
-		display: 'flex',
-		flexDirection: 'column',
+    display: 'flex',
+    flexDirection: 'column',
     marginTop: 32,
     paddingHorizontal: 24,
   },
@@ -23,6 +23,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flex: 1,
     flexGrow: 1,
+    width: '100%',
+    backgroundColor: 'red',
   },
 });
 

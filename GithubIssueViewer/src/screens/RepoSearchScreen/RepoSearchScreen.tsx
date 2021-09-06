@@ -7,7 +7,6 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {fetchIssuesInit, searchUserStream} from '../../actions';
 import SearchInput from '../../components/SearchInput/SearchInput';
-import Section from '../../components/Section/Section';
 import ReposList from '../../components/ReposList/ReposList';
 import {GithubRepositoryResponse, RootStackParamList} from '../../types';
 import styles from '../../styles';
@@ -38,15 +37,13 @@ const RepoSearchScreen = ({navigation}: ScreenProps) => {
         style={theme.containerStyle}>
         <Header />
         <View style={theme.containerStyle}>
-          <Section title="Search">
-            <SearchInput
-              text={repoSearchText}
-              onChangeText={text => {
-                setRepoSearchText(text);
-                dispatch(searchUserStream(text));
-              }}
-            />
-          </Section>
+          <SearchInput
+            text={repoSearchText}
+            onChangeText={text => {
+              setRepoSearchText(text);
+              dispatch(searchUserStream(text));
+            }}
+          />
           <ReposList onSelectRepo={handleSelectRepo} />
         </View>
       </ScrollView>

@@ -9,6 +9,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     padding: 40,
   },
+  indicatorContainer: {
+    position: 'relative',
+  },
   issuesCount: {
     fontSize: 24,
     fontWeight: '600',

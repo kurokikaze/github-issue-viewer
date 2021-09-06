@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, ActivityIndicator} from 'react-native';
 import {PaginationLinksType} from '../../types';
 import {ThemeContext} from '../ThemeContext/ThemeContext';
 
@@ -8,10 +8,16 @@ import styles from './styles';
 type PaginationProps = {
   links: PaginationLinksType;
   page: number;
+  loading: boolean;
   onPageChange: (newPage: number) => void;
 };
 
-export const Pagination = ({links, page, onPageChange}: PaginationProps) => {
+export const Pagination = ({
+  links,
+  page,
+  loading,
+  onPageChange,
+}: PaginationProps) => {
   const theme = useContext(ThemeContext);
   return (
     <View style={styles.container}>
@@ -27,18 +33,21 @@ export const Pagination = ({links, page, onPageChange}: PaginationProps) => {
         </Text>
       </View>
       <View>
-        <Text
-          onPress={() => links.prev && onPageChange(links.prev)}
-          style={[
-            theme.textStyle,
-            styles.pagerText,
-            !links.prev && styles.pagerInactive,
-          ]}>
-          &lt;
-        </Text>
+        
+          <Text
+            onPress={() => links.prev && onPageChange(links.prev)}
+            style={[
+              theme.textStyle,
+              styles.pagerText,
+              !links.prev && styles.pagerInactive,
+            ]}>
+            &lt;
+          </Text>
       </View>
       <View>
-        <Text style={[theme.textStyle, styles.pagerText]}>{page}</Text>
+      {loading ? (
+          <ActivityIndicator size={36} />
+        ) : (<Text style={[theme.textStyle, styles.pagerText]}>{page}</Text>)}
       </View>
       <View>
         <Text

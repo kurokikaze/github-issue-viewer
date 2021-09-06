@@ -1,9 +1,11 @@
 import {
   Action,
+  CHANGE_ISSUES_FILTER,
   FETCH_ISSUES_FAILURE,
   FETCH_ISSUES_INIT,
   FETCH_ISSUES_SUCCESS,
 } from '../actions';
+import {FilterType, FILTER_ALL} from '../components/IssuesFilter/IssuesFilter';
 import {GithubIssuesResponse, PaginationLinksType} from '../types';
 
 type IssuesShape = {
@@ -13,12 +15,14 @@ type IssuesShape = {
   pagination: PaginationLinksType;
   currentPage: number;
   loading: boolean;
+  filter: FilterType;
 };
 
 const initialState = {
   list: [],
   username: '',
   repo: '',
+  filter: FILTER_ALL as FilterType,
   pagination: {
     first: null,
     prev: null,
@@ -33,9 +37,6 @@ function issuesReducer(
   state: IssuesShape = initialState,
   action: Action,
 ): IssuesShape {
-  if ('pagination' in action) {
-    console.dir(action.pagination);
-  }
   switch (action.type) {
     case FETCH_ISSUES_INIT:
       return {
@@ -56,6 +57,11 @@ function issuesReducer(
       return {
         ...state,
         loading: false,
+      };
+    case CHANGE_ISSUES_FILTER:
+      return {
+        ...state,
+        filter: action.filter,
       };
     default:
       return state;

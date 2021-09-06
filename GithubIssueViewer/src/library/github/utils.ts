@@ -1,13 +1,23 @@
 import {PaginationLinksType} from '../../types';
-
+import {URL} from 'react-native-url-polyfill';
 const findRel = (relString: string = ''): string | boolean => {
   const result = relString.match(/rel="([^"]+)"/);
   return result && result?.length > 0 ? result[1] : false;
 };
 
 const findPageNum = (pageLinkString: string = ''): number | null => {
-  const result = pageLinkString.match(/\?page=(\d+)/);
-  return result && result?.length > 0 ? Number(result[1]) : null;
+  if (pageLinkString === '') {
+    return null;
+  }
+
+  try {
+    const url = new URL(pageLinkString.slice(1, pageLinkString.length - 1));
+    const page = url.searchParams.get('page');
+    return page ? parseInt(page, 10) : null;
+  } catch (e) {
+    console.log(`Cannot parse "${pageLinkString}"`);
+    return null;
+  }
 };
 
 const EMTPY_LINKS = {
@@ -28,10 +38,8 @@ export const parsePagination = (pagination: string): PaginationLinksType => {
         findRel(relString),
         findPageNum(pageLinkString),
       ]),
-    //.filter(([rel, num]) => rel !== false && num),
   );
 
-  console.log(JSON.stringify(links, null, 2));
   return {
     ...EMTPY_LINKS,
     ...links,
