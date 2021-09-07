@@ -1,6 +1,6 @@
 import {ofType, combineEpics, StateObservable} from 'redux-observable';
 import {mergeMap, map, Observable} from 'rxjs';
-import {debounceTime} from 'rxjs/operators';
+import {debounceTime, filter} from 'rxjs/operators';
 import {
   Action,
   CHANGE_ISSUES_FILTER,
@@ -8,12 +8,17 @@ import {
   fetchReposInit,
   FETCH_ISSUES_INIT,
   FETCH_ISSUES_PAGE,
+  FETCH_ISSUES_SUCCESS,
   FETCH_REPOS_INIT,
   FETCH_REPOS_PAGE,
   FETCH_USER_INIT,
   SEARCH_USERS_STREAM,
 } from '../actions';
-import {fetchGithubIssues, fetchGithubRepos, fetchGithubUser} from './libraryBindings';
+import {
+  fetchGithubIssues,
+  fetchGithubRepos,
+  fetchGithubUser,
+} from './libraryBindings';
 import {RootState} from '../reducers';
 import {
   getIssuesUsername,
@@ -93,6 +98,26 @@ export const streamToFetches = (action$: Observable<Action>) =>
     debounceTime(USERS_SEARCH_DEBOUNCE),
   );
 
+// Sometimes there will be situation when we'll get empty issues result
+// For example, going to the last page of many-issues repository and switching filter to "open"
+// In this case, we have to request the new last page of issues
+export const getIssuesLastPageIfEmpty = (
+  action$: Observable<Action>,
+  state$: StateObservable<RootState>,
+) =>
+  action$.pipe(
+    ofType<Action, typeof FETCH_ISSUES_SUCCESS>(FETCH_ISSUES_SUCCESS),
+    filter(action => action.issues.length === 0),
+    map(action =>
+      fetchIssuesInit(
+        getIssuesUsername(state$.value),
+        getIssuesRepo(state$.value),
+        action.pagination.last || 1, // In case something went wrong and we did not receive pagination data
+        getIssuesFilter(state$.value),
+      ),
+    ),
+  );
+
 const rootEpic = combineEpics(
   fetchReposEpic,
   streamToFetches,
@@ -100,6 +125,7 @@ const rootEpic = combineEpics(
   pagingIssuesEpic,
   filteringIssuesEpic,
   pagingReposEpic,
+  getIssuesLastPageIfEmpty,
 );
 
 export default rootEpic;
