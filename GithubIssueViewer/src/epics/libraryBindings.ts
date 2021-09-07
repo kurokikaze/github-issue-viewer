@@ -7,8 +7,10 @@ import {
   fetchUserFailure,
   fetchReposFailure,
   fetchReposSuccess,
+  loadOrganizationSuccess,
 } from '../actions';
 import {fetchIssues, fetchUser, fetchRepos} from '../library/github';
+import {retrieveOrganization} from '../library/storage';
 import {FilterType, FILTER_OPEN} from '../components/IssuesFilter/IssuesFilter';
 
 export const fetchGithubIssues = (
@@ -80,6 +82,21 @@ export const fetchGithubRepos = (
           );
         } else {
           observer.next(fetchReposFailure('Not Found'));
+        }
+        observer.complete();
+      })
+      .catch(err => {
+        observer.error(err);
+        observer.complete();
+      });
+  });
+
+export const loadOrganization = (): Observable<Action> =>
+  new Observable(observer => {
+    retrieveOrganization()
+      .then(organization => {
+        if (organization !== null) {
+          observer.next(loadOrganizationSuccess(organization));
         }
         observer.complete();
       })

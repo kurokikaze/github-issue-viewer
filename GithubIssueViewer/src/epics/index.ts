@@ -3,6 +3,9 @@ import {mergeMap, map, Observable} from 'rxjs';
 import {debounceTime, filter} from 'rxjs/operators';
 import {
   Action,
+  APPLICATION_START,
+  bookmarkIssueSuccess,
+  BOOKMARK_ISSUE_INIT,
   CHANGE_ISSUES_FILTER,
   fetchIssuesInit,
   fetchReposInit,
@@ -12,12 +15,15 @@ import {
   FETCH_REPOS_INIT,
   FETCH_REPOS_PAGE,
   FETCH_USER_INIT,
+  loadOrganizationInit,
+  LOAD_ORGANIZATION_INIT,
   SEARCH_USERS_STREAM,
 } from '../actions';
 import {
   fetchGithubIssues,
   fetchGithubRepos,
   fetchGithubUser,
+  loadOrganization,
 } from './libraryBindings';
 import {RootState} from '../reducers';
 import {
@@ -26,6 +32,7 @@ import {
   getReposUsername,
   getIssuesFilter,
   getIssuesPage,
+  getIssueById,
 } from '../selectors';
 
 const USERS_SEARCH_DEBOUNCE = 600;
@@ -118,6 +125,32 @@ export const getIssuesLastPageIfEmpty = (
     ),
   );
 
+export const loadOrganizationEpic = (action$: Observable<Action>) =>
+  action$.pipe(
+    ofType<Action, typeof LOAD_ORGANIZATION_INIT>(LOAD_ORGANIZATION_INIT),
+    mergeMap(() => loadOrganization()),
+  );
+
+export const loadOrganizationOnAppStart = (action$: Observable<Action>) =>
+  action$.pipe(
+    ofType<Action, typeof APPLICATION_START>(APPLICATION_START),
+    map(() => loadOrganizationInit()),
+  );
+
+export const bookmarkWithIssue = (
+  action$: Observable<Action>,
+  state$: StateObservable<RootState>,
+) =>
+  action$.pipe(
+    ofType<Action, typeof BOOKMARK_ISSUE_INIT>(BOOKMARK_ISSUE_INIT),
+    map(action =>
+      bookmarkIssueSuccess(
+        action.issue,
+        getIssueById(action.issue.issue)(state$.value) || null,
+      ),
+    ),
+  );
+
 const rootEpic = combineEpics(
   fetchReposEpic,
   streamToFetches,
@@ -126,6 +159,8 @@ const rootEpic = combineEpics(
   filteringIssuesEpic,
   pagingReposEpic,
   getIssuesLastPageIfEmpty,
+  loadOrganizationEpic,
+  bookmarkWithIssue,
 );
 
 export default rootEpic;

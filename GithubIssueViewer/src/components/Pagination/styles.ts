@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     fontSize: 36,
   },
   pagerInactive: {
-    color: '#888888',
+    opacity: 0.3,
   },
 });
 

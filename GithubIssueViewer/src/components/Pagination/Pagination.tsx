@@ -33,21 +33,22 @@ export const Pagination = ({
         </Text>
       </View>
       <View>
-        
-          <Text
-            onPress={() => links.prev && onPageChange(links.prev)}
-            style={[
-              theme.textStyle,
-              styles.pagerText,
-              !links.prev && styles.pagerInactive,
-            ]}>
-            &lt;
-          </Text>
+        <Text
+          onPress={() => links.prev && onPageChange(links.prev)}
+          style={[
+            theme.textStyle,
+            styles.pagerText,
+            !links.prev && styles.pagerInactive,
+          ]}>
+          &lt;
+        </Text>
       </View>
       <View>
-      {loading ? (
+        {loading ? (
           <ActivityIndicator size={36} />
-        ) : (<Text style={[theme.textStyle, styles.pagerText]}>{page}</Text>)}
+        ) : (
+          <Text style={[theme.textStyle, styles.pagerText]}>{page}</Text>
+        )}
       </View>
       <View>
         <Text

@@ -148,12 +148,22 @@ export type GithubIssuesResponse = GithubIssueResponse[];
 export type RootStackParamList = {
   Home: undefined;
   IssuesBrowser: undefined;
-  IssueViewer: {issueId: number};
+  BookmarksBrowser: undefined;
+  IssueViewer: {
+    issueId: number;
+    isBookmark: boolean;
+  };
 };
 
-type PaginationLinksType = {
+export type PaginationLinksType = {
   first: number | null;
   last: number | null;
   prev: number | null;
   next: number | null;
+};
+
+export type BookmarkType = {
+  issue: number;
+  repo: string;
+  username: string;
 };

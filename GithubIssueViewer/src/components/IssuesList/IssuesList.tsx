@@ -10,24 +10,33 @@ import {
   getIssuesPagination,
   getIssuesUsername,
   getIssuesRepo,
+  getBookmarkedIds,
 } from '../../selectors';
 import {GithubIssueResponse} from '../../types';
 import styles from './styles';
 import {ThemeContext} from '../ThemeContext/ThemeContext';
 import {Pagination} from '../Pagination/Pagination';
 import {IssuesFilter} from '../IssuesFilter/IssuesFilter';
+import {Issue} from '../Issue/Issue';
 
 type IssuesListProps = {
-  onSelectIssue: (repo: GithubIssueResponse) => void;
+  onSelectIssue: (issue: GithubIssueResponse) => void;
+  onBookmarkIssue: (issue: GithubIssueResponse) => void;
+  onRemoveBookmark: (issueId: number) => void;
 };
 
-const IssuesList = ({onSelectIssue}: IssuesListProps) => {
+const IssuesList = ({
+  onSelectIssue,
+  onBookmarkIssue,
+  onRemoveBookmark,
+}: IssuesListProps) => {
   const issues = useSelector(getIssues);
   const pagination = useSelector(getIssuesPagination);
   const page = useSelector(getIssuesPage);
   const isLoading = useSelector(getIssuesLoading);
   const username = useSelector(getIssuesUsername);
   const repo = useSelector(getIssuesRepo);
+  const bookmarkedIds = useSelector(getBookmarkedIds);
 
   const dispatch = useDispatch();
 
@@ -48,14 +57,20 @@ const IssuesList = ({onSelectIssue}: IssuesListProps) => {
       <View style={styles.indicatorContainer}>
         <ScrollView style={styles.issuesContainer}>
           {issues.length > 0 &&
-            issues.map(issue => (
-              <View key={issue.id}>
-                <Text
-                  onPress={() => onSelectIssue(issue)}
-                  style={styles.issueTitle}>
-                  {issue.title}
-                </Text>
-              </View>
+            issues.map((issue, id) => (
+              <Issue
+                key={issue.id}
+                issue={issue}
+                onSelect={() => onSelectIssue(issue)}
+                onBookmark={() => onBookmarkIssue(issue)}
+                onRemoveBookmark={() => onRemoveBookmark(issue.id)}
+                canBookmark={!bookmarkedIds.includes(issue.id)}
+                style={
+                  id % 2
+                    ? theme.containerStyle
+                    : theme.alternativeContainerStyle
+                }
+              />
             ))}
         </ScrollView>
         {isLoading && (

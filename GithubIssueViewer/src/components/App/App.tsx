@@ -18,6 +18,7 @@ import {ThemeContext, themes} from '../ThemeContext/ThemeContext';
 import RepoSearchScreen from '../../screens/RepoSearchScreen/RepoSearchScreen';
 import IssuesBrowserScreen from '../../screens/IssuesBrowserScreen/IssuesBrowserScreen';
 import IssueViewerScreen from '../../screens/IssueViewerScreen/IssueViewerScreen';
+import BookmarksBrowserScreen from '../../screens/BookmarksBrowserScreen/BookmarksBrowserScreen';
 
 import {RootStackParamList} from '../../types';
 
@@ -43,6 +44,11 @@ const App = () => {
           <Stack.Screen
             name="IssueViewer"
             component={IssueViewerScreen}
+            options={{title: 'Issue Viewer'}}
+          />
+          <Stack.Screen
+            name="BookmarksBrowser"
+            component={BookmarksBrowserScreen}
             options={{title: 'Issue Viewer'}}
           />
         </Stack.Navigator>

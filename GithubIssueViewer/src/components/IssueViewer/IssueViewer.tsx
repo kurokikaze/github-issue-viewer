@@ -1,17 +1,20 @@
 import React, {useContext} from 'react';
 import {ScrollView, View, Text} from 'react-native';
 import {useSelector} from 'react-redux';
-import {getIssueById} from '../../selectors';
+import {getBookmarkById, getIssueById} from '../../selectors';
 import {ThemeContext} from '../ThemeContext/ThemeContext';
 
 import styles from './styles';
 
 type IssueViewerProps = {
   issueId: number;
+  isBookmark: boolean;
 };
 
-export const IssueViewer = ({issueId}: IssueViewerProps) => {
-  const issue = useSelector(getIssueById(issueId));
+export const IssueViewer = ({issueId, isBookmark}: IssueViewerProps) => {
+  const issueSelector = isBookmark ? getBookmarkById : getIssueById;
+  const issue = useSelector(issueSelector(issueId));
+  console.log('Viewing', isBookmark ? 'bookmark' : 'issue', 'number', issueId);
   const theme = useContext(ThemeContext);
 
   return (

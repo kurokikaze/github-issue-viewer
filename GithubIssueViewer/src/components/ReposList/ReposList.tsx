@@ -56,13 +56,11 @@ const ReposList = ({onSelectRepo}: ReposListProps) => {
             githubRepos.map(repo => (
               <View key={repo.id}>
                 <Text
-                  onPress={() =>
-                    repo.open_issues_count > 0 && onSelectRepo(repo)
-                  }
+                  onPress={() => repo.has_issues && onSelectRepo(repo)}
                   style={[
                     theme.textStyle,
                     styles.repoName,
-                    repo.open_issues_count > 0 && linkRepoStyle,
+                    repo.has_issues && linkRepoStyle,
                   ]}>
                   {repo.name}{' '}
                   {repo.open_issues_count > 0 &&

@@ -1,10 +1,14 @@
 import {FilterType, FILTER_ALL} from '../components/IssuesFilter/IssuesFilter';
 import {
+  BookmarkType,
+  GithubIssueResponse,
   GithubIssuesResponse,
   GithubReposResponse,
   GithubUserResponse,
   PaginationLinksType,
 } from '../types';
+
+export const APPLICATION_START = 'actions/appication_start';
 
 export const SEARCH_USERS_STREAM = 'streams/search_user';
 
@@ -27,7 +31,24 @@ export const FETCH_SINGLE_ISSUE_INIT = 'actions/fetch_single_issue_init';
 export const FETCH_SINGLE_ISSUE_SUCCESS = 'actions/fetch_single_issue_success';
 export const FETCH_SINGLE_ISSUE_FAILURE = 'actions/fetch_single_issue_failure';
 
-export const fetchRepos = (text: string) => ({type: FETCH_REPOS_INIT, text});
+export const LOAD_ORGANIZATION_INIT = 'actions/load_organization_init';
+export const LOAD_ORGANIZATION_SUCCESS = 'actions/load_organization_success';
+
+export const LOAD_BOOKMARKS_INIT = 'actions/load_bookmarks_init';
+export const LOAD_BOOKMARKS_SUCCESS = 'actions/load_bookmarks_success';
+
+export const BOOKMARK_ISSUE_INIT = 'actions/bookmark_issue_init';
+export const BOOKMARK_ISSUE_SUCCESS = 'actions/bookmark_issue_success';
+
+export const REMOVE_BOOKMARK = 'actions/remove_bookmark';
+
+type ApplicationStartAction = {
+  type: typeof APPLICATION_START;
+};
+
+export const applicationStart = (): ApplicationStartAction => ({
+  type: APPLICATION_START,
+});
 
 interface FailureAction {
   err: string;
@@ -198,6 +219,73 @@ export const fetchIssuesFailure = (err: string): FetchIssuesFailureAction => ({
   err,
 });
 
+// Storage actions
+
+type LoadOrganizationInitAction = {
+  type: typeof LOAD_ORGANIZATION_INIT;
+};
+
+export const loadOrganizationInit = (): LoadOrganizationInitAction => ({
+  type: LOAD_ORGANIZATION_INIT,
+});
+
+type LoadOrganizationSuccessAction = {
+  type: typeof LOAD_ORGANIZATION_SUCCESS;
+  organization: string;
+};
+
+export const loadOrganizationSuccess = (
+  organization: string,
+): LoadOrganizationSuccessAction => ({
+  type: LOAD_ORGANIZATION_SUCCESS,
+  organization,
+});
+
+type LoadBookmarksInitAction = {
+  type: typeof LOAD_BOOKMARKS_INIT;
+};
+
+export const loadBookmarksInit = (): LoadBookmarksInitAction => ({
+  type: LOAD_BOOKMARKS_INIT,
+});
+
+type BookmarkIssueInitAction = {
+  type: typeof BOOKMARK_ISSUE_INIT;
+  issue: BookmarkType;
+};
+
+export const bookmarkIssue = (
+  issue: BookmarkType,
+): BookmarkIssueInitAction => ({
+  type: BOOKMARK_ISSUE_INIT,
+  issue,
+});
+
+type BookmarkIssueSuccessAction = {
+  type: typeof BOOKMARK_ISSUE_SUCCESS;
+  bookmark: BookmarkType;
+  issue: GithubIssueResponse | null;
+};
+
+export const bookmarkIssueSuccess = (
+  bookmark: BookmarkType,
+  issue: GithubIssueResponse | null,
+): BookmarkIssueSuccessAction => ({
+  type: BOOKMARK_ISSUE_SUCCESS,
+  bookmark,
+  issue,
+});
+
+type RemoveBookmarkAction = {
+  type: typeof REMOVE_BOOKMARK;
+  issueId: number;
+};
+
+export const removeBookmark = (issueId: number): RemoveBookmarkAction => ({
+  type: REMOVE_BOOKMARK,
+  issueId,
+});
+
 export type Action =
   | SearchUserStreamAction
   | FetchReposInitAction
@@ -211,4 +299,11 @@ export type Action =
   | FetchIssuesSuccessAction
   | FetchIssuesFailureAction
   | FetchIssuesPageAction
-  | ChangeIssuesFilter;
+  | ChangeIssuesFilter
+  | LoadOrganizationInitAction
+  | LoadOrganizationSuccessAction
+  | LoadBookmarksInitAction
+  | ApplicationStartAction
+  | BookmarkIssueInitAction
+  | BookmarkIssueSuccessAction
+  | RemoveBookmarkAction;

@@ -13,11 +13,12 @@ const IssueViewerScreen = ({route}: ScreenProps) => {
   const theme = useContext(ThemeContext);
 
   const issueId = route.params.issueId;
+  const isBookmark = route.params.isBookmark;
 
   return (
     <SafeAreaView style={[theme.containerStyle, styles.screenStyle]}>
       <StatusBar barStyle={theme.barStyle} />
-      <IssueViewer issueId={issueId} />
+      <IssueViewer issueId={issueId} isBookmark={isBookmark} />
     </SafeAreaView>
   );
 };

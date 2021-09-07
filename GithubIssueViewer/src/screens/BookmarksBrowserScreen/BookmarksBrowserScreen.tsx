@@ -1,14 +1,12 @@
 import React, {useCallback, useContext} from 'react';
 import {SafeAreaView, ScrollView, StatusBar, View} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-
-import IssuesList from '../../components/IssuesList/IssuesList';
 import {GithubIssueResponse, RootStackParamList} from '../../types';
 import styles from '../../styles';
 import {ThemeContext} from '../../components/ThemeContext/ThemeContext';
-import {getIssuesRepo, getIssuesUsername} from '../../selectors';
-import {bookmarkIssue, removeBookmark} from '../../actions';
+import BookmarksList from '../../components/BookmarksList/BookmarksList';
+import {useDispatch} from 'react-redux';
+import {removeBookmark} from '../../actions';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'IssuesBrowser'>;
 
@@ -16,15 +14,9 @@ const IssuesBrowserScreen = ({navigation}: ScreenProps) => {
   const theme = useContext(ThemeContext);
   const dispatch = useDispatch();
 
-  const username = useSelector(getIssuesUsername);
-  const repo = useSelector(getIssuesRepo);
-
   const handleSelectIssue = useCallback(
     (issue: GithubIssueResponse) => {
-      navigation.navigate('IssueViewer', {
-        issueId: issue.id,
-        isBookmark: false,
-      });
+      navigation.navigate('IssueViewer', {issueId: issue.id, isBookmark: true});
     },
     [navigation],
   );
@@ -36,18 +28,6 @@ const IssuesBrowserScreen = ({navigation}: ScreenProps) => {
     [dispatch],
   );
 
-  const handleBookmarkIssue = useCallback(
-    (issue: GithubIssueResponse) => {
-      const bookmark = {
-        issue: issue.id,
-        username,
-        repo,
-      };
-      dispatch(bookmarkIssue(bookmark));
-    },
-    [username, repo, dispatch],
-  );
-
   return (
     <SafeAreaView style={[theme.containerStyle, styles.screenStyle]}>
       <StatusBar barStyle={theme.barStyle} />
@@ -55,9 +35,8 @@ const IssuesBrowserScreen = ({navigation}: ScreenProps) => {
         contentInsetAdjustmentBehavior="automatic"
         style={theme.containerStyle}>
         <View>
-          <IssuesList
+          <BookmarksList
             onSelectIssue={handleSelectIssue}
-            onBookmarkIssue={handleBookmarkIssue}
             onRemoveBookmark={handleRemoveBookmark}
           />
         </View>

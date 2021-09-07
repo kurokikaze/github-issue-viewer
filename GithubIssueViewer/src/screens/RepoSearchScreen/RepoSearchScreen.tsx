@@ -1,8 +1,7 @@
 import React, {useCallback, useContext, useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {SafeAreaView, ScrollView, StatusBar, View} from 'react-native';
+import {SafeAreaView, ScrollView, StatusBar, View, Text} from 'react-native';
 
-import {Header} from 'react-native/Libraries/NewAppScreen';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {fetchIssuesInit, searchUserStream} from '../../actions';
@@ -35,7 +34,11 @@ const RepoSearchScreen = ({navigation}: ScreenProps) => {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={theme.containerStyle}>
-        <Header />
+        <Text
+          style={theme.textStyle}
+          onPress={() => navigation.navigate('BookmarksBrowser')}>
+          Open Bookmarks
+        </Text>
         <View style={theme.containerStyle}>
           <SearchInput
             text={repoSearchText}
