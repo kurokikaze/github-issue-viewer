@@ -2,18 +2,11 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
-  },
-  issueName: {
     display: 'flex',
-    fontSize: 24,
-    fontWeight: '600',
-    marginBottom: 24,
-  },
-  issueData: {
-    display: 'flex',
-    fontSize: 20,
-    marginBottom: 24,
+    marginTop: 12,
+    marginBottom: 12,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
   },
   issueText: {
     fontSize: 18,

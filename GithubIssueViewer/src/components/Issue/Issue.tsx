@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {formatRelative} from 'date-fns';
+import {formatDistanceToNow} from 'date-fns';
 import {
   View,
   Text,
@@ -37,11 +37,11 @@ export const Issue = ({
       <TouchableOpacity onPress={() => onSelect()}>
         <Text style={styles.issueTitle}>{issue.title}</Text>
         <Text style={[theme.textStyle, styles.issueDate]}>
-          Created {formatRelative(new Date(issue.created_at), new Date())}
+          Created {formatDistanceToNow(new Date(issue.created_at))} ago
         </Text>
         {issue.updated_at && (
           <Text style={[theme.textStyle, styles.issueDate]}>
-            Updated {formatRelative(new Date(issue.updated_at), new Date())}
+            Updated {formatDistanceToNow(new Date(issue.updated_at))} ago
           </Text>
         )}
       </TouchableOpacity>

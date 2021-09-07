@@ -30,11 +30,11 @@ const App = () => {
   return (
     <ThemeContext.Provider value={isDarkMode ? themes.dark : themes.light}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator initialRouteName="IssuesBrowser">
           <Stack.Screen
-            name="Home"
+            name="Settings"
             component={RepoSearchScreen}
-            options={{title: 'Search users'}}
+            options={{title: 'Settings'}}
           />
           <Stack.Screen
             name="IssuesBrowser"

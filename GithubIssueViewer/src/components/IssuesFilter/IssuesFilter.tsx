@@ -32,7 +32,7 @@ export const IssuesFilter = () => {
         mode="dropdown"
         selectedValue={currentFilter}
         style={[theme.containerStyle, theme.textStyle, styles.text]}
-        itemStyle={theme.textStyle}
+        itemStyle={theme.containerStyle}
         onValueChange={itemValue => dispatch(changeIssuesFilter(itemValue))}>
         <Item style={theme.textStyle} label="All" value={FILTER_ALL} />
         <Item style={theme.textStyle} label="Open" value={FILTER_OPEN} />

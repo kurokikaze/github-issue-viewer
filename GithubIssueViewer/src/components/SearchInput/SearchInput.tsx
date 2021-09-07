@@ -1,22 +1,9 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet, TextInput} from 'react-native';
+import React, {useContext} from 'react';
+import {SafeAreaView, TextInput} from 'react-native';
+import {Text} from 'react-native-svg';
+import {ThemeContext} from '../ThemeContext/ThemeContext';
 
-const styles = StyleSheet.create({
-  input: {
-    flex: 1,
-    display: 'flex',
-    width: '100%',
-    height: 80,
-    margin: 12,
-    borderWidth: 1,
-    borderColor: 'gray',
-    padding: 10,
-  },
-  container: {
-    flex: 1,
-    width: '100%',
-  },
-});
+import styles from './styles';
 
 type SearchInputProps = {
   text: string;
@@ -24,10 +11,13 @@ type SearchInputProps = {
 };
 
 const SearchInput = ({text, onChangeText}: SearchInputProps) => {
+  const theme = useContext(ThemeContext);
+
   return (
     <SafeAreaView style={styles.container}>
+      <Text>Username</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, theme.textStyle]}
         onChangeText={onChangeText}
         value={text}
       />

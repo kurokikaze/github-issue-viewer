@@ -9,32 +9,32 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchReposPage} from '../../actions';
 import {
-  getRepos,
-  getReposLoading,
-  getReposPagination,
-  getReposPage,
+  getOrgs,
+  getOrgsLoading,
+  getOrgsPage,
+  getOrgsPagination,
 } from '../../selectors';
-import {GithubRepositoryResponse} from '../../types';
+import {GithubOrganizationResponse} from '../../types';
 import {COLOR_LINKS} from '../../styles';
 import {ThemeContext} from '../ThemeContext/ThemeContext';
-import {pluralize, isPaginationUsable} from '../../utils';
 
 import styles from './styles';
 import {Pagination} from '../Pagination/Pagination';
+import {isPaginationUsable} from '../../utils';
 
 type ReposListProps = {
-  onSelectRepo: (repo: GithubRepositoryResponse) => void;
+  onSelectOrg: (org: GithubOrganizationResponse) => void;
 };
 
 const linkRepoStyle: TextStyle = {
   color: COLOR_LINKS,
 };
 
-const ReposList = ({onSelectRepo}: ReposListProps) => {
-  const githubRepos = useSelector(getRepos);
-  const isLoading = useSelector(getReposLoading);
-  const pagination = useSelector(getReposPagination);
-  const page = useSelector(getReposPage);
+const OrgsList = ({onSelectOrg}: ReposListProps) => {
+  const githubOrgs = useSelector(getOrgs);
+  const isLoading = useSelector(getOrgsLoading);
+  const pagination = useSelector(getOrgsPagination);
+  const page = useSelector(getOrgsPage);
 
   const dispatch = useDispatch();
 
@@ -51,25 +51,14 @@ const ReposList = ({onSelectRepo}: ReposListProps) => {
         />
       ) : null}
       <View>
-        <ScrollView style={styles.reposContainer}>
-          {githubRepos.length > 0 &&
-            githubRepos.map(repo => (
-              <View key={repo.id}>
+        <ScrollView style={styles.orgsContainer}>
+          {githubOrgs.length > 0 &&
+            githubOrgs.map(org => (
+              <View key={org.id}>
                 <Text
-                  onPress={() => repo.has_issues && onSelectRepo(repo)}
-                  style={[
-                    theme.textStyle,
-                    styles.repoName,
-                    repo.has_issues && linkRepoStyle,
-                  ]}>
-                  {repo.name}{' '}
-                  {repo.open_issues_count > 0 &&
-                    `(${pluralize({
-                      singular: 'open issue',
-                      plural: 'open issues',
-                      empty: '',
-                      count: repo.open_issues_count,
-                    })})`}
+                  onPress={() => onSelectOrg(org)}
+                  style={[theme.textStyle, styles.orgName, linkRepoStyle]}>
+                  {org.login}{' '}
                 </Text>
               </View>
             ))}
@@ -92,4 +81,4 @@ const ReposList = ({onSelectRepo}: ReposListProps) => {
   );
 };
 
-export default ReposList;
+export default OrgsList;

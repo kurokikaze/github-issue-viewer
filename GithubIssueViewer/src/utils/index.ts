@@ -1,3 +1,5 @@
+import {PaginationLinksType} from '../types';
+
 type PluralizeParams = {
   singular: string;
   plural: string;
@@ -19,3 +21,9 @@ export const pluralize = ({
 
   return `${count} ${output}`;
 };
+
+export const isPaginationUsable = (pagination: PaginationLinksType): boolean =>
+  pagination.first !== null ||
+  pagination.prev !== null ||
+  pagination.next !== null ||
+  pagination.last !== null;

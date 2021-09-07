@@ -1,23 +1,22 @@
 import {
   Action,
-  FETCH_REPOS_FAILURE,
-  FETCH_REPOS_INIT,
-  FETCH_REPOS_SUCCESS,
+  FETCH_ORGANIZATIONS_FAILURE,
+  FETCH_ORGANIZATIONS_INIT,
+  FETCH_ORGANIZATIONS_SUCCESS,
   SEARCH_USERS_STREAM,
-  SELECT_ORGANIZATION,
 } from '../actions';
-import {GithubReposResponse, PaginationLinksType} from '../types';
+import {GithubOrganizationsResponse, PaginationLinksType} from '../types';
 
-export type ReposShape = {
-  organization: string;
-  list: GithubReposResponse;
+export type OrganizationsShape = {
+  username: string;
+  list: GithubOrganizationsResponse;
   loading: boolean;
   pagination: PaginationLinksType;
   currentPage: number;
 };
 
 const initialState = {
-  organization: '',
+  username: '',
   list: [],
   pagination: {
     first: null,
@@ -30,32 +29,28 @@ const initialState = {
 };
 
 function reposReducer(
-  state: ReposShape = initialState,
+  state: OrganizationsShape = initialState,
   action: Action,
-): ReposShape {
+): OrganizationsShape {
+  console.log(action.type);
   switch (action.type) {
     case SEARCH_USERS_STREAM:
       return initialState;
-    case SELECT_ORGANIZATION:
-      return {
-        ...state,
-        organization: action.org.login,
-      };
-    case FETCH_REPOS_INIT:
+    case FETCH_ORGANIZATIONS_INIT:
       return {
         ...state,
         loading: true,
       };
-    case FETCH_REPOS_SUCCESS:
+    case FETCH_ORGANIZATIONS_SUCCESS:
       return {
         ...state,
         loading: false,
-        organization: action.organization,
-        list: action.repos,
+        username: action.username,
+        list: action.orgs,
         pagination: action.pagination,
         currentPage: action.page,
       };
-    case FETCH_REPOS_FAILURE:
+    case FETCH_ORGANIZATIONS_FAILURE:
       return {
         ...state,
         loading: false,

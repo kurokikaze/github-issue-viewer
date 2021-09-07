@@ -18,6 +18,7 @@ import {ThemeContext} from '../ThemeContext/ThemeContext';
 import {Pagination} from '../Pagination/Pagination';
 import {IssuesFilter} from '../IssuesFilter/IssuesFilter';
 import {Issue} from '../Issue/Issue';
+import {isPaginationUsable} from '../../utils';
 
 type IssuesListProps = {
   onSelectIssue: (issue: GithubIssueResponse) => void;
@@ -48,12 +49,14 @@ const IssuesList = ({
         Issues of {username}/{repo}
       </Text>
       <IssuesFilter />
-      <Pagination
-        links={pagination}
-        page={page}
-        loading={isLoading}
-        onPageChange={newPage => dispatch(fetchIssuesPage(newPage))}
-      />
+      {isPaginationUsable(pagination) ? (
+        <Pagination
+          links={pagination}
+          page={page}
+          loading={isLoading}
+          onPageChange={newPage => dispatch(fetchIssuesPage(newPage))}
+        />
+      ) : null}
       <View style={styles.indicatorContainer}>
         <ScrollView style={styles.issuesContainer}>
           {issues.length > 0 &&
@@ -77,14 +80,16 @@ const IssuesList = ({
           <ActivityIndicator style={styles.overlayIndicator} size={200} />
         )}
       </View>
-      <Pagination
-        links={pagination}
-        page={page}
-        loading={isLoading}
-        onPageChange={newPage =>
-          !isLoading && dispatch(fetchIssuesPage(newPage))
-        }
-      />
+      {isPaginationUsable(pagination) ? (
+        <Pagination
+          links={pagination}
+          page={page}
+          loading={isLoading}
+          onPageChange={newPage =>
+            !isLoading && dispatch(fetchIssuesPage(newPage))
+          }
+        />
+      ) : null}
     </View>
   );
 };

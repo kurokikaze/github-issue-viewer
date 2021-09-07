@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexGrow: 1,
     width: '100%',
-    backgroundColor: 'red',
   },
 });
 

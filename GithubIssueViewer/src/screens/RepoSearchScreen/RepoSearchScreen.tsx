@@ -1,22 +1,33 @@
 import React, {useCallback, useContext, useState} from 'react';
-import {useDispatch} from 'react-redux';
-import {SafeAreaView, ScrollView, StatusBar, View, Text} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {SafeAreaView, ScrollView, StatusBar, Text, View} from 'react-native';
 
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-import {fetchIssuesInit, searchUserStream} from '../../actions';
+import {
+  fetchIssuesInit,
+  searchUserStream,
+  selectOrganization,
+} from '../../actions';
 import SearchInput from '../../components/SearchInput/SearchInput';
 import ReposList from '../../components/ReposList/ReposList';
-import {GithubRepositoryResponse, RootStackParamList} from '../../types';
+import {
+  GithubOrganizationResponse,
+  GithubRepositoryResponse,
+  RootStackParamList,
+} from '../../types';
 import styles from '../../styles';
 import {ThemeContext} from '../../components/ThemeContext/ThemeContext';
+import OrgsList from '../../components/OrgsList/OrgsList';
+import {getReposOrganization} from '../../selectors';
 
-type ScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
+type ScreenProps = NativeStackScreenProps<RootStackParamList, 'Settings'>;
 
 const RepoSearchScreen = ({navigation}: ScreenProps) => {
   const theme = useContext(ThemeContext);
+  const organization = useSelector(getReposOrganization);
 
-  const [repoSearchText, setRepoSearchText] = useState<string>('');
+  const [repoSearchText, setRepoSearchText] = useState<string>('gustin');
 
   const dispatch = useDispatch();
 
@@ -28,17 +39,19 @@ const RepoSearchScreen = ({navigation}: ScreenProps) => {
     [navigation, dispatch],
   );
 
+  const handleSelectOrg = useCallback(
+    (org: GithubOrganizationResponse) => {
+      dispatch(selectOrganization(org));
+    },
+    [dispatch],
+  );
+
   return (
     <SafeAreaView style={[theme.containerStyle, styles.screenStyle]}>
       <StatusBar barStyle={theme.barStyle} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={theme.containerStyle}>
-        <Text
-          style={theme.textStyle}
-          onPress={() => navigation.navigate('BookmarksBrowser')}>
-          Open Bookmarks
-        </Text>
         <View style={theme.containerStyle}>
           <SearchInput
             text={repoSearchText}
@@ -47,7 +60,14 @@ const RepoSearchScreen = ({navigation}: ScreenProps) => {
               dispatch(searchUserStream(text));
             }}
           />
-          <ReposList onSelectRepo={handleSelectRepo} />
+          <Text>Organizations</Text>
+          <OrgsList onSelectOrg={handleSelectOrg} />
+          {organization ? (
+            <View>
+              <Text>Repositories</Text>
+              <ReposList onSelectRepo={handleSelectRepo} />
+            </View>
+          ) : null}
         </View>
       </ScrollView>
     </SafeAreaView>

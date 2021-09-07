@@ -3,6 +3,8 @@ import {
   BookmarkType,
   GithubIssueResponse,
   GithubIssuesResponse,
+  GithubOrganizationResponse,
+  GithubOrganizationsResponse,
   GithubReposResponse,
   GithubUserResponse,
   PaginationLinksType,
@@ -11,6 +13,8 @@ import {
 export const APPLICATION_START = 'actions/appication_start';
 
 export const SEARCH_USERS_STREAM = 'streams/search_user';
+
+export const SELECT_ORGANIZATION = 'actions/select_organization';
 
 export const FETCH_REPOS_INIT = 'actions/fetch_repos_init';
 export const FETCH_REPOS_SUCCESS = 'actions/fetch_repos_success';
@@ -31,6 +35,14 @@ export const FETCH_SINGLE_ISSUE_INIT = 'actions/fetch_single_issue_init';
 export const FETCH_SINGLE_ISSUE_SUCCESS = 'actions/fetch_single_issue_success';
 export const FETCH_SINGLE_ISSUE_FAILURE = 'actions/fetch_single_issue_failure';
 
+export const FETCH_ORGANIZATIONS_INIT = 'actions/fetch_organizations_init';
+export const FETCH_ORGANIZATIONS_SUCCESS =
+  'actions/fetch_organizations_success';
+export const FETCH_ORGANIZATIONS_FAILURE =
+  'actions/fetch_organizations_failure';
+export const FETCH_ORGANIZATIONS_PAGE = 'actions/fetch_organizations_page';
+
+// Loading from storage
 export const LOAD_ORGANIZATION_INIT = 'actions/load_organization_init';
 export const LOAD_ORGANIZATION_SUCCESS = 'actions/load_organization_success';
 
@@ -53,6 +65,79 @@ export const applicationStart = (): ApplicationStartAction => ({
 interface FailureAction {
   err: string;
 }
+
+type SelectOrganizationAction = {
+  type: typeof SELECT_ORGANIZATION;
+  org: GithubOrganizationResponse;
+};
+
+export const selectOrganization = (
+  org: GithubOrganizationResponse,
+): SelectOrganizationAction => ({
+  type: SELECT_ORGANIZATION,
+  org,
+});
+
+/* Fetching organizations */
+
+export type FetchOrganizationsInitAction = {
+  type: typeof FETCH_ORGANIZATIONS_INIT;
+  user: string;
+  page: number;
+};
+
+export const fetchOrganizationsInit = (
+  user: string,
+  page: number = 1,
+): FetchOrganizationsInitAction => ({
+  type: FETCH_ORGANIZATIONS_INIT,
+  user,
+  page,
+});
+
+export type FetchOrganizationsPageAction = {
+  type: typeof FETCH_ORGANIZATIONS_PAGE;
+  page: number;
+};
+
+export const fetchOrganizationsPage = (
+  page: number,
+): FetchOrganizationsPageAction => ({
+  type: FETCH_ORGANIZATIONS_PAGE,
+  page,
+});
+
+type FetchOrganizationsSuccessAction = {
+  type: typeof FETCH_ORGANIZATIONS_SUCCESS;
+  username: string;
+  orgs: GithubOrganizationsResponse;
+  pagination: PaginationLinksType;
+  page: number;
+};
+
+export const fetchOrganizationsSuccess = (
+  username: string,
+  orgs: GithubOrganizationsResponse,
+  pagination: PaginationLinksType,
+  page: number,
+): FetchOrganizationsSuccessAction => ({
+  type: FETCH_ORGANIZATIONS_SUCCESS,
+  username,
+  orgs,
+  pagination,
+  page,
+});
+
+type FetchOrganizationsFailureAction = FailureAction & {
+  type: typeof FETCH_ORGANIZATIONS_FAILURE;
+};
+
+export const fetchOrganizationsFailure = (
+  err: string,
+): FetchOrganizationsFailureAction => ({
+  type: FETCH_ORGANIZATIONS_FAILURE,
+  err,
+});
 
 /* Fetching repos */
 export type FetchReposInitAction = {
@@ -82,20 +167,20 @@ export const fetchReposPage = (page: number): FetchReposPageAction => ({
 
 type FetchReposSuccessAction = {
   type: typeof FETCH_REPOS_SUCCESS;
-  username: string;
+  organization: string;
   repos: GithubReposResponse;
   pagination: PaginationLinksType;
   page: number;
 };
 
 export const fetchReposSuccess = (
-  username: string,
+  organization: string,
   repos: GithubReposResponse,
   pagination: PaginationLinksType,
   page: number,
 ): FetchReposSuccessAction => ({
   type: FETCH_REPOS_SUCCESS,
-  username,
+  organization,
   repos,
   pagination,
   page,
@@ -288,6 +373,7 @@ export const removeBookmark = (issueId: number): RemoveBookmarkAction => ({
 
 export type Action =
   | SearchUserStreamAction
+  | SelectOrganizationAction
   | FetchReposInitAction
   | FetchReposSuccessAction
   | FetchReposFailureAction
@@ -299,6 +385,10 @@ export type Action =
   | FetchIssuesSuccessAction
   | FetchIssuesFailureAction
   | FetchIssuesPageAction
+  | FetchOrganizationsInitAction
+  | FetchOrganizationsSuccessAction
+  | FetchOrganizationsFailureAction
+  | FetchOrganizationsPageAction
   | ChangeIssuesFilter
   | LoadOrganizationInitAction
   | LoadOrganizationSuccessAction

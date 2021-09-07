@@ -2,6 +2,7 @@ import {URL} from 'react-native-url-polyfill';
 import {
   GithubIssuesResponse,
   GithubNotFoundResponse,
+  GithubOrganizationsResponse,
   GithubReposResponse,
   GithubUserResponse,
   PaginationLinksType,
@@ -20,16 +21,43 @@ export const fetchUser = async (username: string): Promise<UserResponse> => {
   return result;
 };
 
+type OrgsResponse = {
+  result: GithubOrganizationsResponse;
+  pagination: PaginationLinksType;
+} | null;
+
+export const fetchOrganizations = async (
+  username: string,
+  page: number,
+): Promise<OrgsResponse> => {
+  const url = new URL(`https://api.github.com/users/${username}/orgs`);
+  url.searchParams.append('page', page.toString(10));
+  console.log(url.toString());
+  const response = await fetch(url.toString());
+  const result = await response.json();
+  const paginationHeader = response.headers.get('link');
+
+  if (result instanceof Array) {
+    return {
+      result,
+      pagination: parsePagination(paginationHeader || ''),
+    };
+  }
+
+  return null;
+};
+
 type ReposResponse = {
   result: GithubReposResponse;
   pagination: PaginationLinksType;
 } | null;
 
 export const fetchRepos = async (
-  username: string,
+  organization: string,
   page: number = 1,
 ): Promise<ReposResponse> => {
-  const url = new URL(`https://api.github.com/users/${username}/repos`);
+  console.log(`https://api.github.com/orgs/${organization}/repos`);
+  const url = new URL(`https://api.github.com/orgs/${organization}/repos`);
   url.searchParams.append('page', page.toString(10));
 
   const response = await fetch(url.toString());
@@ -71,7 +99,7 @@ export const fetchIssues = async (
     await response.json();
 
   const pagination = response.headers.get('link');
-  console.log(JSON.stringify(pagination));
+
   if (issuesResult instanceof Array) {
     return {
       result: issuesResult,

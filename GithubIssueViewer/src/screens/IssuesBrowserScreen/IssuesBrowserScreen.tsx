@@ -9,6 +9,7 @@ import styles from '../../styles';
 import {ThemeContext} from '../../components/ThemeContext/ThemeContext';
 import {getIssuesRepo, getIssuesUsername} from '../../selectors';
 import {bookmarkIssue, removeBookmark} from '../../actions';
+import Header from '../../components/Header/Header';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'IssuesBrowser'>;
 
@@ -51,6 +52,7 @@ const IssuesBrowserScreen = ({navigation}: ScreenProps) => {
   return (
     <SafeAreaView style={[theme.containerStyle, styles.screenStyle]}>
       <StatusBar barStyle={theme.barStyle} />
+      <Header />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={theme.containerStyle}>

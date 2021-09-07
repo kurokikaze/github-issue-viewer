@@ -8,8 +8,15 @@ import {
   fetchReposFailure,
   fetchReposSuccess,
   loadOrganizationSuccess,
+  fetchOrganizationsSuccess,
+  fetchOrganizationsFailure,
 } from '../actions';
-import {fetchIssues, fetchUser, fetchRepos} from '../library/github';
+import {
+  fetchIssues,
+  fetchUser,
+  fetchRepos,
+  fetchOrganizations,
+} from '../library/github';
 import {retrieveOrganization} from '../library/storage';
 import {FilterType, FILTER_OPEN} from '../components/IssuesFilter/IssuesFilter';
 
@@ -65,16 +72,16 @@ export const fetchGithubUser = (username: string): Observable<Action> =>
   });
 
 export const fetchGithubRepos = (
-  username: string,
+  organization: string,
   page: number = 1,
 ): Observable<Action> =>
   new Observable(observer => {
-    fetchRepos(username, page)
+    fetchRepos(organization, page)
       .then(response => {
         if (response && 'result' in response) {
           observer.next(
             fetchReposSuccess(
-              username,
+              organization,
               response.result,
               response.pagination,
               page,
@@ -82,6 +89,33 @@ export const fetchGithubRepos = (
           );
         } else {
           observer.next(fetchReposFailure('Not Found'));
+        }
+        observer.complete();
+      })
+      .catch(err => {
+        observer.error(err);
+        observer.complete();
+      });
+  });
+
+export const fetchGithubOrgs = (
+  username: string,
+  page: number = 1,
+): Observable<Action> =>
+  new Observable(observer => {
+    fetchOrganizations(username, page)
+      .then(response => {
+        if (response && 'result' in response) {
+          observer.next(
+            fetchOrganizationsSuccess(
+              username,
+              response.result,
+              response.pagination,
+              page,
+            ),
+          );
+        } else {
+          observer.next(fetchOrganizationsFailure('Not Found'));
         }
         observer.complete();
       })

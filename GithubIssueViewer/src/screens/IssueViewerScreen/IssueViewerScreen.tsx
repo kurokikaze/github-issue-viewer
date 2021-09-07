@@ -6,6 +6,7 @@ import {RootStackParamList} from '../../types';
 import styles from '../../styles';
 import {IssueViewer} from '../../components/IssueViewer/IssueViewer';
 import {ThemeContext} from '../../components/ThemeContext/ThemeContext';
+import Header from '../../components/Header/Header';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'IssueViewer'>;
 
@@ -18,6 +19,7 @@ const IssueViewerScreen = ({route}: ScreenProps) => {
   return (
     <SafeAreaView style={[theme.containerStyle, styles.screenStyle]}>
       <StatusBar barStyle={theme.barStyle} />
+      <Header />
       <IssueViewer issueId={issueId} isBookmark={isBookmark} />
     </SafeAreaView>
   );
