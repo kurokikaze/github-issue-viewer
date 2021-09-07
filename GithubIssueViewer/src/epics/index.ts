@@ -13,11 +13,7 @@ import {
   FETCH_USER_INIT,
   SEARCH_USERS_STREAM,
 } from '../actions';
-import {
-  fetchGithubIssues,
-  fetchGithubRepos,
-  fetchGithubUser,
-} from '../library/github';
+import {fetchGithubIssues, fetchGithubRepos, fetchGithubUser} from './libraryBindings';
 import {RootState} from '../reducers';
 import {
   getIssuesUsername,
