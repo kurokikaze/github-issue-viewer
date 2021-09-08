@@ -17,7 +17,7 @@ import styles from './styles';
 import {ThemeContext} from '../ThemeContext/ThemeContext';
 import {Pagination} from '../Pagination/Pagination';
 import {IssuesFilter} from '../IssuesFilter/IssuesFilter';
-import {Issue} from '../Issue/Issue';
+import Issue from '../Issue/Issue';
 import {isPaginationUsable} from '../../utils';
 
 type IssuesListProps = {

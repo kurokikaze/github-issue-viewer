@@ -16,18 +16,21 @@ import {
   GithubRepositoryResponse,
   RootStackParamList,
 } from '../../types';
-import styles from '../../styles';
+import globalStyles from '../../styles';
 import {ThemeContext} from '../../components/ThemeContext/ThemeContext';
 import OrgsList from '../../components/OrgsList/OrgsList';
-import {getReposOrganization} from '../../selectors';
+import {getOrgsUsername, getReposOrganization} from '../../selectors';
+
+import styles from './styles';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'Settings'>;
 
 const RepoSearchScreen = ({navigation}: ScreenProps) => {
   const theme = useContext(ThemeContext);
   const organization = useSelector(getReposOrganization);
+  const username = useSelector(getOrgsUsername);
 
-  const [repoSearchText, setRepoSearchText] = useState<string>('gustin');
+  const [repoSearchText, setRepoSearchText] = useState<string>(username);
 
   const dispatch = useDispatch();
 
@@ -47,7 +50,7 @@ const RepoSearchScreen = ({navigation}: ScreenProps) => {
   );
 
   return (
-    <SafeAreaView style={[theme.containerStyle, styles.screenStyle]}>
+    <SafeAreaView style={[theme.containerStyle, globalStyles.screenStyle]}>
       <StatusBar barStyle={theme.barStyle} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
@@ -60,11 +63,15 @@ const RepoSearchScreen = ({navigation}: ScreenProps) => {
               dispatch(searchUserStream(text));
             }}
           />
-          <Text>Organizations</Text>
+          <Text style={[theme.textStyle, styles.listHeader]}>
+            Organizations
+          </Text>
           <OrgsList onSelectOrg={handleSelectOrg} />
           {organization ? (
             <View>
-              <Text>Repositories</Text>
+              <Text style={[theme.textStyle, styles.listHeader]}>
+                Repositories
+              </Text>
               <ReposList onSelectRepo={handleSelectRepo} />
             </View>
           ) : null}

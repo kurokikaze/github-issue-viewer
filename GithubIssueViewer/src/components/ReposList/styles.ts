@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexGrow: 1,
     flexDirection: 'column',
-    padding: 40,
+    padding: 20,
+    paddingTop: 10,
   },
   reposContainer: {
     flex: 1,

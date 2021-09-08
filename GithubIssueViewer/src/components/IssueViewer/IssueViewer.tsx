@@ -12,10 +12,10 @@ type IssueViewerProps = {
   isBookmark: boolean;
 };
 
-export const IssueViewer = ({issueId, isBookmark}: IssueViewerProps) => {
+const IssueViewer = ({issueId, isBookmark}: IssueViewerProps) => {
   const issueSelector = isBookmark ? getBookmarkById : getIssueById;
   const issue = useSelector(issueSelector(issueId));
-  console.log('Viewing', isBookmark ? 'bookmark' : 'issue', 'number', issueId);
+
   const theme = useContext(ThemeContext);
 
   return (
@@ -55,3 +55,5 @@ export const IssueViewer = ({issueId, isBookmark}: IssueViewerProps) => {
     </ScrollView>
   );
 };
+
+export default IssueViewer;

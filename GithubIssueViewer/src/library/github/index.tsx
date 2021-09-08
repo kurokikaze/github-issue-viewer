@@ -32,7 +32,7 @@ export const fetchOrganizations = async (
 ): Promise<OrgsResponse> => {
   const url = new URL(`https://api.github.com/users/${username}/orgs`);
   url.searchParams.append('page', page.toString(10));
-  console.log(url.toString());
+
   const response = await fetch(url.toString());
   const result = await response.json();
   const paginationHeader = response.headers.get('link');
@@ -56,7 +56,6 @@ export const fetchRepos = async (
   organization: string,
   page: number = 1,
 ): Promise<ReposResponse> => {
-  console.log(`https://api.github.com/orgs/${organization}/repos`);
   const url = new URL(`https://api.github.com/orgs/${organization}/repos`);
   url.searchParams.append('page', page.toString(10));
 

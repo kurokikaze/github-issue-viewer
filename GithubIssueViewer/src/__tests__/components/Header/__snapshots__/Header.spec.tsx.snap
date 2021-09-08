@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "display": "flex",
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "marginBottom": 12,
+      "marginTop": 12,
+    }
+  }
+>
+  <RNSVGSvgView
+    align="xMidYMid"
+    bbHeight={50}
+    bbWidth={50}
+    color={4294967295}
+    focusable={false}
+    height={50}
+    meetOrSlice={0}
+    minX={0}
+    minY={0}
+    onPress={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    responsible={true}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+          "borderWidth": 0,
+        },
+        Object {
+          "flex": 0,
+          "height": 50,
+          "width": 50,
+        },
+      ]
+    }
+    tintColor={4294967295}
+    vbHeight={32}
+    vbWidth={32}
+    width={50}
+  >
+    <RNSVGGroup>
+      <RNSVGCircle
+        cx={16}
+        cy={16}
+        fill={null}
+        propList={
+          Array [
+            "fill",
+            "stroke",
+            "strokeWidth",
+            "strokeLinecap",
+            "strokeLinejoin",
+            "strokeMiterlimit",
+          ]
+        }
+        r={4}
+        stroke={4294967295}
+        strokeLinecap={1}
+        strokeLinejoin={1}
+        strokeMiterlimit={10}
+        strokeWidth={2}
+      />
+      <RNSVGPath
+        d="M27.758 10.366l-1-1.732a2 2 0 00-2.732-.732l-.526.304c-2 1.154-4.5-.289-4.5-2.598V5a2 2 0 00-2-2h-2a2 2 0 00-2 2v.608c0 2.309-2.5 3.753-4.5 2.598l-.526-.304a2 2 0 00-2.732.732l-1 1.732a2 2 0 00.732 2.732l.526.304c2 1.155 2 4.041 0 5.196l-.526.304a2 2 0 00-.732 2.732l1 1.732a2 2 0 002.732.732l.526-.304c2-1.155 4.5.289 4.5 2.598V27a2 2 0 002 2h2a2 2 0 002-2v-.608c0-2.309 2.5-3.753 4.5-2.598l.526.304a2 2 0 002.732-.732l1-1.732a2 2 0 00-.732-2.732l-.526-.304c-2-1.155-2-4.041 0-5.196l.526-.304a1.999 1.999 0 00.732-2.732z"
+        fill={null}
+        propList={
+          Array [
+            "fill",
+            "stroke",
+            "strokeWidth",
+            "strokeLinecap",
+            "strokeLinejoin",
+            "strokeMiterlimit",
+          ]
+        }
+        stroke={4294967295}
+        strokeLinecap={1}
+        strokeLinejoin={1}
+        strokeMiterlimit={10}
+        strokeWidth={2}
+      />
+    </RNSVGGroup>
+  </RNSVGSvgView>
+  <RNSVGSvgView
+    align="xMidYMid"
+    bbHeight={50}
+    bbWidth={50}
+    color={4294967295}
+    fill="none"
+    focusable={false}
+    height={50}
+    meetOrSlice={0}
+    minX={0}
+    minY={0}
+    onPress={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    responsible={true}
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth={2}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+          "borderWidth": 0,
+        },
+        Object {
+          "flex": 0,
+          "height": 50,
+          "width": 50,
+        },
+      ]
+    }
+    tintColor={4294967295}
+    vbHeight={24}
+    vbWidth={24}
+    width={50}
+  >
+    <RNSVGGroup
+      fill={null}
+      propList={
+        Array [
+          "fill",
+          "stroke",
+          "strokeWidth",
+          "strokeLinecap",
+          "strokeLinejoin",
+        ]
+      }
+      stroke={
+        Array [
+          2,
+        ]
+      }
+      strokeLinecap={1}
+      strokeLinejoin={1}
+      strokeWidth={2}
+    >
+      <RNSVGPath
+        d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"
+      />
+    </RNSVGGroup>
+  </RNSVGSvgView>
+</View>
+`;

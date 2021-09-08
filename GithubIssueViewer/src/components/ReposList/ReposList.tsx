@@ -54,9 +54,10 @@ const ReposList = ({onSelectRepo}: ReposListProps) => {
         <ScrollView style={styles.reposContainer}>
           {githubRepos.length > 0 &&
             githubRepos.map(repo => (
-              <View key={repo.id}>
+              <View key={repo.id} data-testID={`repo-${repo.id}`}>
                 <Text
                   onPress={() => repo.has_issues && onSelectRepo(repo)}
+                  data-testID="select-repo"
                   style={[
                     theme.textStyle,
                     styles.repoName,

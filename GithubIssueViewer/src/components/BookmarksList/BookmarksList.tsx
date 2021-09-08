@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
-import {ActivityIndicator, ScrollView, Text, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import {useSelector} from 'react-redux';
 
-import {getIssuesLoading, getBookmarks} from '../../selectors';
+import {getBookmarks} from '../../selectors';
 import {GithubIssueResponse} from '../../types';
 import {ThemeContext} from '../ThemeContext/ThemeContext';
-import {Issue} from '../Issue/Issue';
+import Issue from '../Issue/Issue';
 
 import styles from './styles';
 
@@ -15,8 +15,7 @@ type IssuesListProps = {
 };
 
 const BookmarksList = ({onSelectIssue, onRemoveBookmark}: IssuesListProps) => {
-  const issues = useSelector(getBookmarks);
-  const isLoading = useSelector(getIssuesLoading);
+  const bookmarks = useSelector(getBookmarks);
 
   const theme = useContext(ThemeContext);
 
@@ -25,25 +24,25 @@ const BookmarksList = ({onSelectIssue, onRemoveBookmark}: IssuesListProps) => {
       <Text style={[theme.textStyle, styles.issuesCount]}>Bookmarks</Text>
       <View style={styles.indicatorContainer}>
         <ScrollView style={styles.issuesContainer}>
-          {issues.length > 0 &&
-            issues.map((issue, id) => (
-              <Issue
-                key={issue.id}
-                issue={issue}
-                onSelect={() => onSelectIssue(issue)}
-                canBookmark={false}
-                onRemoveBookmark={() => onRemoveBookmark(issue.id)}
-                style={
-                  id % 2
-                    ? theme.containerStyle
-                    : theme.alternativeContainerStyle
-                }
-              />
-            ))}
+          {bookmarks.length > 0 &&
+            bookmarks.map(({issue, repo, username}, id) =>
+              issue ? (
+                <Issue
+                  key={issue.id}
+                  issue={issue}
+                  source={`${username}/${repo}`}
+                  onSelect={() => onSelectIssue(issue)}
+                  canBookmark={false}
+                  onRemoveBookmark={() => onRemoveBookmark(issue.id)}
+                  style={
+                    id % 2
+                      ? theme.containerStyle
+                      : theme.alternativeContainerStyle
+                  }
+                />
+              ) : null,
+            )}
         </ScrollView>
-        {isLoading && (
-          <ActivityIndicator style={styles.overlayIndicator} size={200} />
-        )}
       </View>
     </View>
   );

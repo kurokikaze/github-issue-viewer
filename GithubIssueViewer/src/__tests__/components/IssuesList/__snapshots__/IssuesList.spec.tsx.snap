@@ -1,0 +1,542 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IssuesList renders correctly (issue is bookmarked) 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "display": "flex",
+        "flex": 1,
+        "flexDirection": "column",
+        "flexGrow": 1,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#333",
+        },
+        Object {
+          "flex": 1,
+          "fontSize": 24,
+          "fontWeight": "600",
+        },
+      ]
+    }
+  >
+    Issues of 
+    /
+  </Text>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#ccc",
+        },
+        Object {
+          "paddingLeft": 40,
+          "paddingRight": 40,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#333",
+          },
+          Object {
+            "fontSize": 18,
+          },
+        ]
+      }
+    >
+      Issue status:
+    </Text>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#ccc",
+          },
+          Object {
+            "color": "#333",
+          },
+          Object {
+            "fontSize": 18,
+          },
+        ]
+      }
+    >
+      <RNCPicker
+        items={
+          Array [
+            Object {
+              "label": "All",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "all",
+            },
+            Object {
+              "label": "Open",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "open",
+            },
+            Object {
+              "label": "Closed",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "closed",
+            },
+          ]
+        }
+        onChange={[Function]}
+        selectedIndex={0}
+        style={
+          Array [
+            Object {
+              "height": 216,
+            },
+            Object {
+              "backgroundColor": "#ccc",
+            },
+          ]
+        }
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "position": "relative",
+      }
+    }
+  >
+    <RCTScrollView
+      style={
+        Object {
+          "display": "flex",
+          "flex": 1,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View />
+    </RCTScrollView>
+  </View>
+</View>
+`;
+
+exports[`IssuesList renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "display": "flex",
+        "flex": 1,
+        "flexDirection": "column",
+        "flexGrow": 1,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#333",
+        },
+        Object {
+          "flex": 1,
+          "fontSize": 24,
+          "fontWeight": "600",
+        },
+      ]
+    }
+  >
+    Issues of 
+    /
+  </Text>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#ccc",
+        },
+        Object {
+          "paddingLeft": 40,
+          "paddingRight": 40,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#333",
+          },
+          Object {
+            "fontSize": 18,
+          },
+        ]
+      }
+    >
+      Issue status:
+    </Text>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#ccc",
+          },
+          Object {
+            "color": "#333",
+          },
+          Object {
+            "fontSize": 18,
+          },
+        ]
+      }
+    >
+      <RNCPicker
+        items={
+          Array [
+            Object {
+              "label": "All",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "all",
+            },
+            Object {
+              "label": "Open",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "open",
+            },
+            Object {
+              "label": "Closed",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "closed",
+            },
+          ]
+        }
+        onChange={[Function]}
+        selectedIndex={0}
+        style={
+          Array [
+            Object {
+              "height": 216,
+            },
+            Object {
+              "backgroundColor": "#ccc",
+            },
+          ]
+        }
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "position": "relative",
+      }
+    }
+  >
+    <RCTScrollView
+      style={
+        Object {
+          "display": "flex",
+          "flex": 1,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View>
+        <View
+          style={
+            Array [
+              Object {
+                "borderBottomColor": "#fff",
+                "borderBottomWidth": 1,
+                "display": "flex",
+                "flex": 1,
+                "paddingBottom": 5,
+                "paddingTop": 18,
+              },
+              Object {
+                "backgroundColor": "#ddd",
+              },
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#056aff",
+                  "display": "flex",
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                  "fontSize": 20,
+                  "fontWeight": "normal",
+                  "lineHeight": 24,
+                  "marginBottom": 20,
+                  "paddingLeft": 20,
+                }
+              }
+            >
+              Clear GitHub Connect settings when not restoring settings
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                  },
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "paddingLeft": 20,
+                  },
+                ]
+              }
+            >
+              Created 
+              5 days
+               ago
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                  },
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "paddingLeft": 20,
+                  },
+                ]
+              }
+            >
+              Updated 
+              about 7 hours
+               ago
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "marginTop": 20,
+                "paddingLeft": 20,
+                "paddingRight": 20,
+              }
+            }
+          >
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {},
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#007AFF",
+                        "fontSize": 18,
+                        "margin": 8,
+                        "textAlign": "center",
+                      },
+                    ]
+                  }
+                >
+                  Add to bookmarks
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "borderBottomColor": "#fff",
+                "borderBottomWidth": 1,
+                "display": "flex",
+                "flex": 1,
+                "paddingBottom": 5,
+                "paddingTop": 18,
+              },
+              Object {
+                "backgroundColor": "#ccc",
+              },
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#056aff",
+                  "display": "flex",
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                  "fontSize": 20,
+                  "fontWeight": "normal",
+                  "lineHeight": 24,
+                  "marginBottom": 20,
+                  "paddingLeft": 20,
+                }
+              }
+            >
+              Clear GitHub Connect settings when not restoring settings
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                  },
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "paddingLeft": 20,
+                  },
+                ]
+              }
+            >
+              Created 
+              5 days
+               ago
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                  },
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "paddingLeft": 20,
+                  },
+                ]
+              }
+            >
+              Updated 
+              about 7 hours
+               ago
+            </Text>
+          </View>
+          <View
+            style={
+              Object {
+                "marginTop": 20,
+                "paddingLeft": 20,
+                "paddingRight": 20,
+              }
+            }
+          >
+            <View
+              accessibilityRole="button"
+              accessible={true}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <View
+                style={
+                  Array [
+                    Object {},
+                  ]
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#007AFF",
+                        "fontSize": 18,
+                        "margin": 8,
+                        "textAlign": "center",
+                      },
+                    ]
+                  }
+                >
+                  Add to bookmarks
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;

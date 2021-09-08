@@ -1,0 +1,487 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReposList renders correctly (loading) 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "display": "flex",
+        "flex": 1,
+        "flexDirection": "column",
+        "flexGrow": 1,
+        "padding": 40,
+      },
+    ]
+  }
+>
+  <View>
+    <RCTScrollView
+      style={
+        Object {
+          "display": "flex",
+          "flex": 1,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View>
+        <View
+          data-testID="repo-215071064"
+        >
+          <Text
+            data-testID="select-repo"
+            onPress={[Function]}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                },
+                Object {
+                  "display": "flex",
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                  "fontSize": 18,
+                  "fontWeight": "normal",
+                  "lineHeight": 20,
+                  "marginTop": 18,
+                },
+                Object {
+                  "color": "#056aff",
+                },
+              ]
+            }
+          >
+            amadeus-bot
+             
+          </Text>
+        </View>
+        <View
+          data-testID="repo-155540694"
+        >
+          <Text
+            data-testID="select-repo"
+            onPress={[Function]}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                },
+                Object {
+                  "display": "flex",
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                  "fontSize": 18,
+                  "fontWeight": "normal",
+                  "lineHeight": 20,
+                  "marginTop": 18,
+                },
+                Object {
+                  "color": "#056aff",
+                },
+              ]
+            }
+          >
+            andor-vis
+             
+            (5 open issues)
+          </Text>
+        </View>
+      </View>
+    </RCTScrollView>
+    <ActivityIndicator
+      size={300}
+      style={
+        Object {
+          "alignItems": "center",
+          "bottom": 0,
+          "justifyContent": "center",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`ReposList renders correctly (pagination) 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "display": "flex",
+        "flex": 1,
+        "flexDirection": "column",
+        "flexGrow": 1,
+        "padding": 40,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <View>
+      <Text
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+            },
+            Object {
+              "fontSize": 36,
+            },
+            Object {
+              "opacity": 0.3,
+            },
+          ]
+        }
+      >
+        &lt;&lt;
+      </Text>
+    </View>
+    <View>
+      <Text
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+            },
+            Object {
+              "fontSize": 36,
+            },
+            Object {
+              "opacity": 0.3,
+            },
+          ]
+        }
+      >
+        &lt;
+      </Text>
+    </View>
+    <View>
+      <ActivityIndicator
+        size={36}
+      />
+    </View>
+    <View>
+      <Text
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+            },
+            Object {
+              "fontSize": 36,
+            },
+            false,
+          ]
+        }
+      >
+        &gt;
+      </Text>
+    </View>
+    <View>
+      <Text
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+            },
+            Object {
+              "fontSize": 36,
+            },
+            false,
+          ]
+        }
+      >
+        &gt;&gt;
+      </Text>
+    </View>
+  </View>
+  <View>
+    <RCTScrollView
+      style={
+        Object {
+          "display": "flex",
+          "flex": 1,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View>
+        <View
+          data-testID="repo-215071064"
+        >
+          <Text
+            data-testID="select-repo"
+            onPress={[Function]}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                },
+                Object {
+                  "display": "flex",
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                  "fontSize": 18,
+                  "fontWeight": "normal",
+                  "lineHeight": 20,
+                  "marginTop": 18,
+                },
+                Object {
+                  "color": "#056aff",
+                },
+              ]
+            }
+          >
+            amadeus-bot
+             
+          </Text>
+        </View>
+        <View
+          data-testID="repo-155540694"
+        >
+          <Text
+            data-testID="select-repo"
+            onPress={[Function]}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                },
+                Object {
+                  "display": "flex",
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                  "fontSize": 18,
+                  "fontWeight": "normal",
+                  "lineHeight": 20,
+                  "marginTop": 18,
+                },
+                Object {
+                  "color": "#056aff",
+                },
+              ]
+            }
+          >
+            andor-vis
+             
+            (5 open issues)
+          </Text>
+        </View>
+      </View>
+    </RCTScrollView>
+    <ActivityIndicator
+      size={300}
+      style={
+        Object {
+          "alignItems": "center",
+          "bottom": 0,
+          "justifyContent": "center",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <View>
+      <Text
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+            },
+            Object {
+              "fontSize": 36,
+            },
+            Object {
+              "opacity": 0.3,
+            },
+          ]
+        }
+      >
+        &lt;&lt;
+      </Text>
+    </View>
+    <View>
+      <Text
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+            },
+            Object {
+              "fontSize": 36,
+            },
+            Object {
+              "opacity": 0.3,
+            },
+          ]
+        }
+      >
+        &lt;
+      </Text>
+    </View>
+    <View>
+      <ActivityIndicator
+        size={36}
+      />
+    </View>
+    <View>
+      <Text
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+            },
+            Object {
+              "fontSize": 36,
+            },
+            false,
+          ]
+        }
+      >
+        &gt;
+      </Text>
+    </View>
+    <View>
+      <Text
+        onPress={[Function]}
+        style={
+          Array [
+            Object {
+              "color": "#333",
+            },
+            Object {
+              "fontSize": 36,
+            },
+            false,
+          ]
+        }
+      >
+        &gt;&gt;
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`ReposList renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "display": "flex",
+        "flex": 1,
+        "flexDirection": "column",
+        "flexGrow": 1,
+        "padding": 40,
+      },
+    ]
+  }
+>
+  <View>
+    <RCTScrollView
+      style={
+        Object {
+          "display": "flex",
+          "flex": 1,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View>
+        <View
+          data-testID="repo-215071064"
+        >
+          <Text
+            data-testID="select-repo"
+            onPress={[Function]}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                },
+                Object {
+                  "display": "flex",
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                  "fontSize": 18,
+                  "fontWeight": "normal",
+                  "lineHeight": 20,
+                  "marginTop": 18,
+                },
+                Object {
+                  "color": "#056aff",
+                },
+              ]
+            }
+          >
+            amadeus-bot
+             
+          </Text>
+        </View>
+        <View
+          data-testID="repo-155540694"
+        >
+          <Text
+            data-testID="select-repo"
+            onPress={[Function]}
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                },
+                Object {
+                  "display": "flex",
+                  "flex": 1,
+                  "flexWrap": "wrap",
+                  "fontSize": 18,
+                  "fontWeight": "normal",
+                  "lineHeight": 20,
+                  "marginTop": 18,
+                },
+                Object {
+                  "color": "#056aff",
+                },
+              ]
+            }
+          >
+            andor-vis
+             
+            (5 open issues)
+          </Text>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;

@@ -32,7 +32,6 @@ function reposReducer(
   state: OrganizationsShape = initialState,
   action: Action,
 ): OrganizationsShape {
-  console.log(action.type);
   switch (action.type) {
     case SEARCH_USERS_STREAM:
       return initialState;

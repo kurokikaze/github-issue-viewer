@@ -4,7 +4,7 @@ import {SafeAreaView, StatusBar} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../types';
 import styles from '../../styles';
-import {IssueViewer} from '../../components/IssueViewer/IssueViewer';
+import IssueViewer from '../../components/IssueViewer/IssueViewer';
 import {ThemeContext} from '../../components/ThemeContext/ThemeContext';
 import Header from '../../components/Header/Header';
 

@@ -1,0 +1,58 @@
+import {GithubIssueResponse} from '../types';
+
+export const testIssue: GithubIssueResponse = {
+  url: 'https://api.github.com/repos/github/backup-utils/issues/770',
+  repository_url: 'https://api.github.com/repos/github/backup-utils',
+  labels_url:
+    'https://api.github.com/repos/github/backup-utils/issues/770/labels{/name}',
+  comments_url:
+    'https://api.github.com/repos/github/backup-utils/issues/770/comments',
+  events_url:
+    'https://api.github.com/repos/github/backup-utils/issues/770/events',
+  html_url: 'https://github.com/github/backup-utils/pull/770',
+  id: 987963032,
+  node_id: 'MDExOlB1bGxSZXF1ZXN0NzI2OTcxMTc5',
+  number: 770,
+  title: 'Clear GitHub Connect settings when not restoring settings',
+  user: {
+    login: 'lildude',
+    id: 627280,
+    node_id: 'MDQ6VXNlcjYyNzI4MA==',
+    avatar_url: 'https://avatars.githubusercontent.com/u/627280?v=4',
+    gravatar_id: '',
+    url: 'https://api.github.com/users/lildude',
+    html_url: 'https://github.com/lildude',
+    followers_url: 'https://api.github.com/users/lildude/followers',
+    following_url:
+      'https://api.github.com/users/lildude/following{/other_user}',
+    gists_url: 'https://api.github.com/users/lildude/gists{/gist_id}',
+    starred_url: 'https://api.github.com/users/lildude/starred{/owner}{/repo}',
+    subscriptions_url: 'https://api.github.com/users/lildude/subscriptions',
+    organizations_url: 'https://api.github.com/users/lildude/orgs',
+    repos_url: 'https://api.github.com/users/lildude/repos',
+    events_url: 'https://api.github.com/users/lildude/events{/privacy}',
+    received_events_url: 'https://api.github.com/users/lildude/received_events',
+    type: 'User',
+    site_admin: true,
+  },
+  labels: [],
+  state: 'open',
+  locked: false,
+  assignee: null,
+  assignees: [],
+  milestone: null,
+  comments: 0,
+  created_at: '2021-09-03T17:12:00Z',
+  updated_at: '2021-09-08T16:27:33Z',
+  closed_at: null,
+  author_association: 'MEMBER',
+  active_lock_reason: null,
+  pull_request: {
+    url: 'https://api.github.com/repos/github/backup-utils/pulls/770',
+    html_url: 'https://github.com/github/backup-utils/pull/770',
+    diff_url: 'https://github.com/github/backup-utils/pull/770.diff',
+    patch_url: 'https://github.com/github/backup-utils/pull/770.patch',
+  },
+  body: "At the moment, when a backup it restored _without_ any settings, ie without using the `--config` flag, the GitHub Connect settings are still restored. This is because they're stored in the MySQL database and there's nothing in place to clear them or prevent them from being restored.\r\n\r\nThis leads to a problem where the restored instance will have all the same settings and GitHub Connect-specific unique ID as the original host and will start competing with the original instance if both are active. This can result in one instance being kicked off GitHub Connect, or confusing license sync information, if both remain connected.\r\n\r\nThis PR resolves this problem by calling a new script immediately after the MySQL database has been restored. This script will be added to all currently supported versions of GHES.",
+  performed_via_github_app: null,
+};

@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Bookmark renders correctly 1`] = `
+<RNSVGSvgView
+  align="xMidYMid"
+  bbHeight="100%"
+  bbWidth="100%"
+  fill="none"
+  focusable={false}
+  meetOrSlice={0}
+  minX={0}
+  minY={0}
+  stroke="currentColor"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  strokeWidth={2}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "transparent",
+        "borderWidth": 0,
+      },
+      Object {
+        "flex": 0,
+        "height": "100%",
+        "width": "100%",
+      },
+    ]
+  }
+  vbHeight={24}
+  vbWidth={24}
+>
+  <RNSVGGroup
+    fill={null}
+    propList={
+      Array [
+        "fill",
+        "stroke",
+        "strokeWidth",
+        "strokeLinecap",
+        "strokeLinejoin",
+      ]
+    }
+    stroke={
+      Array [
+        2,
+      ]
+    }
+    strokeLinecap={1}
+    strokeLinejoin={1}
+    strokeWidth={2}
+  >
+    <RNSVGPath
+      d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"
+    />
+  </RNSVGGroup>
+</RNSVGSvgView>
+`;

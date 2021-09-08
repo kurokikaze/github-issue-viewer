@@ -1,0 +1,219 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IssueViewer renders correctly (Bookmark) 1`] = `
+<RCTScrollView
+  contentInsetAdjustmentBehavior="automatic"
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ccc",
+      },
+      Object {
+        "padding": 20,
+      },
+    ]
+  }
+>
+  <View>
+    <View>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#333",
+            },
+            Object {
+              "display": "flex",
+              "fontSize": 24,
+              "fontWeight": "600",
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Clear GitHub Connect settings when not restoring settings
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#333",
+            },
+            Object {
+              "display": "flex",
+              "fontSize": 20,
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        State: 
+        open
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#333",
+            },
+            Object {
+              "display": "flex",
+              "fontSize": 20,
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Created:
+         
+        September 03, 2021 20:09:00
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#333",
+            },
+            Object {
+              "display": "flex",
+              "fontSize": 20,
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Updated:
+         
+        September 08, 2021 19:09:33
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#333",
+            },
+            Object {
+              "fontSize": 18,
+            },
+          ]
+        }
+      >
+        At the moment, when a backup it restored _without_ any settings, ie without using the \`--config\` flag, the GitHub Connect settings are still restored. This is because they're stored in the MySQL database and there's nothing in place to clear them or prevent them from being restored.
+
+This leads to a problem where the restored instance will have all the same settings and GitHub Connect-specific unique ID as the original host and will start competing with the original instance if both are active. This can result in one instance being kicked off GitHub Connect, or confusing license sync information, if both remain connected.
+
+This PR resolves this problem by calling a new script immediately after the MySQL database has been restored. This script will be added to all currently supported versions of GHES.
+      </Text>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`IssueViewer renders correctly (Issue) 1`] = `
+<RCTScrollView
+  contentInsetAdjustmentBehavior="automatic"
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#ccc",
+      },
+      Object {
+        "padding": 20,
+      },
+    ]
+  }
+>
+  <View>
+    <View>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#333",
+            },
+            Object {
+              "display": "flex",
+              "fontSize": 24,
+              "fontWeight": "600",
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Clear GitHub Connect settings when not restoring settings
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#333",
+            },
+            Object {
+              "display": "flex",
+              "fontSize": 20,
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        State: 
+        open
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#333",
+            },
+            Object {
+              "display": "flex",
+              "fontSize": 20,
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Created:
+         
+        September 03, 2021 20:09:00
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#333",
+            },
+            Object {
+              "display": "flex",
+              "fontSize": 20,
+              "marginBottom": 24,
+            },
+          ]
+        }
+      >
+        Updated:
+         
+        September 08, 2021 19:09:33
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#333",
+            },
+            Object {
+              "fontSize": 18,
+            },
+          ]
+        }
+      >
+        At the moment, when a backup it restored _without_ any settings, ie without using the \`--config\` flag, the GitHub Connect settings are still restored. This is because they're stored in the MySQL database and there's nothing in place to clear them or prevent them from being restored.
+
+This leads to a problem where the restored instance will have all the same settings and GitHub Connect-specific unique ID as the original host and will start competing with the original instance if both are active. This can result in one instance being kicked off GitHub Connect, or confusing license sync information, if both remain connected.
+
+This PR resolves this problem by calling a new script immediately after the MySQL database has been restored. This script will be added to all currently supported versions of GHES.
+      </Text>
+    </View>
+  </View>
+</RCTScrollView>
+`;

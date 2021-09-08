@@ -18,7 +18,7 @@ type IssuesShape = {
   filter: FilterType;
 };
 
-const initialState = {
+export const initialState = {
   list: [],
   username: '',
   repo: '',
