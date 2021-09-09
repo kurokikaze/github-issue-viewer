@@ -9,6 +9,10 @@ import {
   FILTER_ALL,
   FILTER_CLOSED,
 } from '../../components/IssuesFilter/IssuesFilter';
+import {
+  SORT_DIRECTION_ASC,
+  SORT_NONE,
+} from '../../components/IssuesSorter/IssuesSorter';
 import issuesReducer, {initialState} from '../../reducers/issues';
 import {testIssue} from '../../testData/testIssue';
 
@@ -39,6 +43,10 @@ describe('issuesReducer', () => {
       'testRepo',
       1,
       FILTER_ALL,
+      {
+        field: SORT_NONE,
+        direction: SORT_DIRECTION_ASC,
+      },
     );
     const resultingState = issuesReducer(initialState, storeIssuesAction);
 

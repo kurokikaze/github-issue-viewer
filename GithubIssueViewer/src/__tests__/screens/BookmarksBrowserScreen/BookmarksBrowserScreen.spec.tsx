@@ -11,9 +11,9 @@ const mockStore = configureMockStore([]);
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../../types';
 import {RouteProp} from '@react-navigation/core';
-import { testIssue } from '../../../testData/testIssue';
+import {testIssue} from '../../../testData/testIssue';
 
-describe('App', () => {
+describe('BookmarksBrowserScreen', () => {
   it('renders correctly', () => {
     const navigation = {
       navigate: jest.fn(),
@@ -21,12 +21,14 @@ describe('App', () => {
 
     const store = mockStore({
       bookmarks: {
-        bookmarks: [{
-          issue: testIssue.id,
-          username: 'testuser',
-          repo: 'testrepo',
-        }],
-        issues: [testIssue]
+        bookmarks: [
+          {
+            issue: testIssue.id,
+            username: 'testuser',
+            repo: 'testrepo',
+          },
+        ],
+        issues: [testIssue],
       },
     });
 

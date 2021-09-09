@@ -9,6 +9,11 @@ import IssuesList from '../../../components/IssuesList/IssuesList';
 import Issue from '../../../components/Issue/Issue';
 import {testIssue} from '../../../testData/testIssue';
 import {formatDistanceToNow} from 'date-fns';
+import {FILTER_ALL} from '../../../components/IssuesFilter/IssuesFilter';
+import {
+  SORT_DIRECTION_ASC,
+  SORT_NONE,
+} from '../../../components/IssuesSorter/IssuesSorter';
 
 jest.mock('date-fns');
 
@@ -39,6 +44,11 @@ describe('IssuesList', () => {
           last: null,
         },
         loading: false,
+        filter: FILTER_ALL,
+        sorting: {
+          field: SORT_NONE,
+          direction: SORT_DIRECTION_ASC,
+        },
       },
     });
 
@@ -73,6 +83,11 @@ describe('IssuesList', () => {
           last: null,
         },
         loading: false,
+				filter: FILTER_ALL,
+        sorting: {
+          field: SORT_NONE,
+          direction: SORT_DIRECTION_ASC,
+        },
       },
     });
 
@@ -100,6 +115,11 @@ describe('IssuesList', () => {
           prev: null,
           next: null,
           last: null,
+        },
+				filter: FILTER_ALL,
+        sorting: {
+          field: SORT_NONE,
+          direction: SORT_DIRECTION_ASC,
         },
       },
       bookmarks: {
@@ -133,6 +153,11 @@ describe('IssuesList', () => {
           prev: null,
           next: null,
           last: null,
+        },
+				filter: FILTER_ALL,
+        sorting: {
+          field: SORT_NONE,
+          direction: SORT_DIRECTION_ASC,
         },
       },
       bookmarks: {

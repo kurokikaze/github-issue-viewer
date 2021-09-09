@@ -8,7 +8,7 @@ import {GithubIssueResponse, RootStackParamList} from '../../types';
 import styles from '../../styles';
 import {ThemeContext} from '../../components/ThemeContext/ThemeContext';
 import {getIssuesRepo, getIssuesUsername} from '../../selectors';
-import {bookmarkIssue, removeBookmark} from '../../actions';
+import {bookmarkIssue, fetchCommentsInit, removeBookmark} from '../../actions';
 import Header from '../../components/Header/Header';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'IssuesBrowser'>;
@@ -22,12 +22,13 @@ const IssuesBrowserScreen = ({navigation}: ScreenProps) => {
 
   const handleSelectIssue = useCallback(
     (issue: GithubIssueResponse) => {
+      dispatch(fetchCommentsInit(username, repo, issue.number, 1));
       navigation.navigate('IssueViewer', {
         issueId: issue.id,
         isBookmark: false,
       });
     },
-    [navigation],
+    [dispatch, navigation, username, repo],
   );
 
   const handleRemoveBookmark = useCallback(

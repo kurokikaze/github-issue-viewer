@@ -112,6 +112,92 @@ exports[`IssuesList renders correctly (issue is bookmarked) 1`] = `
   </View>
   <View
     style={
+      Array [
+        Object {
+          "backgroundColor": "#ccc",
+        },
+        Object {
+          "paddingLeft": 40,
+          "paddingRight": 40,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#333",
+          },
+          Object {
+            "fontSize": 18,
+          },
+        ]
+      }
+    >
+      Sort by:
+    </Text>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#ccc",
+          },
+          Object {
+            "color": "#333",
+          },
+          Object {
+            "fontSize": 18,
+          },
+        ]
+      }
+    >
+      <RNCPicker
+        items={
+          Array [
+            Object {
+              "label": "No sorting",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "none",
+            },
+            Object {
+              "label": "Created at",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "created_at",
+            },
+            Object {
+              "label": "Updated at",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "updated_at",
+            },
+            Object {
+              "label": "Number of comments",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "comments",
+            },
+          ]
+        }
+        onChange={[Function]}
+        selectedIndex={0}
+        style={
+          Array [
+            Object {
+              "height": 216,
+            },
+            Object {
+              "backgroundColor": "#ccc",
+            },
+          ]
+        }
+      />
+    </View>
+  </View>
+  <View
+    style={
       Object {
         "position": "relative",
       }
@@ -126,7 +212,37 @@ exports[`IssuesList renders correctly (issue is bookmarked) 1`] = `
         }
       }
     >
-      <View />
+      <View>
+        <View>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                },
+                Object {
+                  "flex": 1,
+                  "fontSize": 24,
+                  "fontWeight": "600",
+                },
+              ]
+            }
+          >
+            No issues to display
+          </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#333",
+                },
+              ]
+            }
+          >
+            Choose organization and user in Settings
+          </Text>
+        </View>
+      </View>
     </RCTScrollView>
   </View>
 </View>
@@ -224,6 +340,92 @@ exports[`IssuesList renders correctly 1`] = `
               "testID": undefined,
               "textColor": undefined,
               "value": "closed",
+            },
+          ]
+        }
+        onChange={[Function]}
+        selectedIndex={0}
+        style={
+          Array [
+            Object {
+              "height": 216,
+            },
+            Object {
+              "backgroundColor": "#ccc",
+            },
+          ]
+        }
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#ccc",
+        },
+        Object {
+          "paddingLeft": 40,
+          "paddingRight": 40,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#333",
+          },
+          Object {
+            "fontSize": 18,
+          },
+        ]
+      }
+    >
+      Sort by:
+    </Text>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#ccc",
+          },
+          Object {
+            "color": "#333",
+          },
+          Object {
+            "fontSize": 18,
+          },
+        ]
+      }
+    >
+      <RNCPicker
+        items={
+          Array [
+            Object {
+              "label": "No sorting",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "none",
+            },
+            Object {
+              "label": "Created at",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "created_at",
+            },
+            Object {
+              "label": "Updated at",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "updated_at",
+            },
+            Object {
+              "label": "Number of comments",
+              "testID": undefined,
+              "textColor": undefined,
+              "value": "comments",
             },
           ]
         }
@@ -344,6 +546,22 @@ exports[`IssuesList renders correctly 1`] = `
               Updated 
               some time ago
                ago
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                  },
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "paddingLeft": 20,
+                  },
+                ]
+              }
+            >
+              No comments
             </Text>
           </View>
           <View
@@ -482,6 +700,22 @@ exports[`IssuesList renders correctly 1`] = `
               Updated 
               some time ago
                ago
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                  },
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "paddingLeft": 20,
+                  },
+                ]
+              }
+            >
+              No comments
             </Text>
           </View>
           <View

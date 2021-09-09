@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App renders correctly 1`] = `
+exports[`BookmarksBrowserScreen renders correctly 1`] = `
 <RCTSafeAreaView
   emulateUnlessSupported={true}
   style={
@@ -172,8 +172,24 @@ exports[`App renders correctly 1`] = `
                       }
                     >
                       Updated 
-                      about 15 hours
+                      about 19 hours
                        ago
+                    </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "color": "#333",
+                          },
+                          Object {
+                            "fontSize": 18,
+                            "lineHeight": 20,
+                            "paddingLeft": 20,
+                          },
+                        ]
+                      }
+                    >
+                      No comments
                     </Text>
                   </View>
                   <View

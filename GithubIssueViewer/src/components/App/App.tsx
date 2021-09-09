@@ -14,13 +14,14 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useColorScheme} from 'react-native';
 
-import {ThemeContext, themes} from '../ThemeContext/ThemeContext';
+import {ThemeContext} from '../ThemeContext/ThemeContext';
 import RepoSearchScreen from '../../screens/RepoSearchScreen/RepoSearchScreen';
 import IssuesBrowserScreen from '../../screens/IssuesBrowserScreen/IssuesBrowserScreen';
 import IssueViewerScreen from '../../screens/IssueViewerScreen/IssueViewerScreen';
 import BookmarksBrowserScreen from '../../screens/BookmarksBrowserScreen/BookmarksBrowserScreen';
 
 import {RootStackParamList} from '../../types';
+import themes from '../../styles/themes';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

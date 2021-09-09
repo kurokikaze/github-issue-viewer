@@ -149,6 +149,22 @@ exports[`BookmarksList renders correctly 1`] = `
               some time ago
                ago
             </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                  },
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "paddingLeft": 20,
+                  },
+                ]
+              }
+            >
+              No comments
+            </Text>
           </View>
           <View
             style={
@@ -303,6 +319,22 @@ exports[`BookmarksList renders correctly 1`] = `
               Updated 
               some time ago
                ago
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#333",
+                  },
+                  Object {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                    "paddingLeft": 20,
+                  },
+                ]
+              }
+            >
+              No comments
             </Text>
           </View>
           <View

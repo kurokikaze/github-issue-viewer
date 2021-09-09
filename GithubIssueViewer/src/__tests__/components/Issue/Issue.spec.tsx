@@ -8,6 +8,7 @@ import {testIssue} from '../../../testData/testIssue';
 import {formatDistanceToNow} from 'date-fns';
 
 jest.mock('date-fns');
+
 const mockDistanceFormatter = formatDistanceToNow as jest.MockedFunction<
   typeof formatDistanceToNow
 >;

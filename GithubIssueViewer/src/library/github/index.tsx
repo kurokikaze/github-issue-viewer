@@ -1,5 +1,6 @@
 import {URL} from 'react-native-url-polyfill';
 import {
+  GithubCommentsResponse,
   GithubIssuesResponse,
   GithubNotFoundResponse,
   GithubOrganizationsResponse,
@@ -12,6 +13,10 @@ import {
   FilterType,
   FILTER_OPEN,
 } from '../../components/IssuesFilter/IssuesFilter';
+import {
+  SortingType,
+  SORT_NONE,
+} from '../../components/IssuesSorter/IssuesSorter';
 
 type UserResponse = GithubUserResponse | GithubNotFoundResponse;
 
@@ -83,6 +88,7 @@ export const fetchIssues = async (
   repo: string,
   page: number = 1,
   filter: FilterType = FILTER_OPEN,
+  sorting: SortingType,
 ): Promise<IssuesResponse> => {
   const url = new URL(
     `https://api.github.com/repos/${username}/${repo}/issues`,
@@ -91,6 +97,11 @@ export const fetchIssues = async (
 
   if (filter !== FILTER_OPEN) {
     url.searchParams.append('state', filter);
+  }
+
+  if (sorting.field !== SORT_NONE) {
+    url.searchParams.append('sort', sorting.field);
+    url.searchParams.append('direction', sorting.direction);
   }
 
   const response = await fetch(url.toString());
@@ -102,6 +113,38 @@ export const fetchIssues = async (
   if (issuesResult instanceof Array) {
     return {
       result: issuesResult,
+      pagination: parsePagination(pagination || ''),
+    };
+  }
+
+  return null;
+};
+
+type CommentsResponse = {
+  result: GithubCommentsResponse | GithubNotFoundResponse;
+  pagination: PaginationLinksType;
+} | null;
+
+export const fetchComments = async (
+  username: string,
+  repo: string,
+  number: number,
+  page: number = 1,
+): Promise<CommentsResponse> => {
+  const url = new URL(
+    `https://api.github.com/repos/${username}/${repo}/issues/${number}/comments`,
+  );
+  url.searchParams.append('page', page.toString(10));
+
+  const response = await fetch(url.toString());
+  const commentsResult: GithubCommentsResponse | GithubNotFoundResponse =
+    await response.json();
+
+  const pagination = response.headers.get('link');
+
+  if (commentsResult instanceof Array) {
+    return {
+      result: commentsResult,
       pagination: parsePagination(pagination || ''),
     };
   }

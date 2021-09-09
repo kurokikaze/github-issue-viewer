@@ -16,13 +16,18 @@ import {
   FETCH_REPOS_INIT,
   FETCH_REPOS_PAGE,
   FETCH_USER_INIT,
+  FETCH_COMMENTS_INIT,
   loadOrganizationInit,
   LOAD_ORGANIZATION_INIT,
   SEARCH_USERS_STREAM,
   fetchOrganizationsInit,
   SELECT_ORGANIZATION,
+  CHANGE_ISSUES_SORTER,
+  fetchCommentsInit,
+  FETCH_BOOKMARK_COMMENTS,
 } from '../actions';
 import {
+  fetchGithubComments,
   fetchGithubIssues,
   fetchGithubOrgs,
   fetchGithubRepos,
@@ -38,7 +43,12 @@ import {
   getIssueById,
   getOrgsUsername,
   getReposOrganization,
+  getIssuesSorting,
+  getCommentsIssueNumber,
+  getBookmarkById,
+  getBookmarkObjectById,
 } from '../selectors';
+import {BookmarkType, GithubIssueResponse} from '../types';
 
 const USERS_SEARCH_DEBOUNCE = 600;
 
@@ -54,7 +64,13 @@ export const fetchIssuesEpic = (action$: Observable<Action>) =>
   action$.pipe(
     ofType<Action, typeof FETCH_ISSUES_INIT>(FETCH_ISSUES_INIT),
     mergeMap(action =>
-      fetchGithubIssues(action.user, action.repo, action.page, action.filter),
+      fetchGithubIssues(
+        action.user,
+        action.repo,
+        action.page,
+        action.filter,
+        action.sorting,
+      ),
     ),
   );
 
@@ -70,6 +86,7 @@ export const pagingIssuesEpic = (
         getIssuesRepo(state$.value),
         action.page,
         getIssuesFilter(state$.value),
+        getIssuesSorting(state$.value),
       ),
     ),
   );
@@ -86,6 +103,55 @@ export const filteringIssuesEpic = (
         getIssuesRepo(state$.value),
         getIssuesPage(state$.value),
         action.filter,
+        getIssuesSorting(state$.value),
+      ),
+    ),
+  );
+
+export const sortingIssuesEpic = (
+  action$: Observable<Action>,
+  state$: StateObservable<RootState>,
+) =>
+  action$.pipe(
+    ofType<Action, typeof CHANGE_ISSUES_SORTER>(CHANGE_ISSUES_SORTER),
+    map(action =>
+      fetchIssuesInit(
+        getIssuesUsername(state$.value),
+        getIssuesRepo(state$.value),
+        getIssuesPage(state$.value),
+        getIssuesFilter(state$.value),
+        action.sorter,
+      ),
+    ),
+  );
+
+// Comments
+
+export const fetchCommentsEpic = (action$: Observable<Action>) =>
+  action$.pipe(
+    ofType<Action, typeof FETCH_COMMENTS_INIT>(FETCH_COMMENTS_INIT),
+    mergeMap(action =>
+      fetchGithubComments(
+        action.user,
+        action.repo,
+        action.issueNumber,
+        action.page,
+      ),
+    ),
+  );
+
+export const pagingCommentsEpic = (
+  action$: Observable<Action>,
+  state$: StateObservable<RootState>,
+) =>
+  action$.pipe(
+    ofType<Action, typeof FETCH_ISSUES_PAGE>(FETCH_ISSUES_PAGE),
+    map(action =>
+      fetchCommentsInit(
+        getIssuesUsername(state$.value),
+        getIssuesRepo(state$.value),
+        getCommentsIssueNumber(state$.value),
+        action.page,
       ),
     ),
   );
@@ -157,6 +223,7 @@ export const getIssuesLastPageIfEmpty = (
         getIssuesRepo(state$.value),
         action.pagination.last || 1, // In case something went wrong and we did not receive pagination data
         getIssuesFilter(state$.value),
+        getIssuesSorting(state$.value),
       ),
     ),
   );
@@ -187,12 +254,45 @@ export const bookmarkWithIssue = (
     ),
   );
 
+export const fetchBookmarksCommentsEpic = (
+  action$: Observable<Action>,
+  state$: StateObservable<RootState>,
+) =>
+  action$.pipe(
+    ofType<Action, typeof FETCH_BOOKMARK_COMMENTS>(FETCH_BOOKMARK_COMMENTS),
+    filter(action => {
+      const bookmark = getBookmarkObjectById(action.issueId)(state$.value);
+      const issue = getBookmarkById(action.issueId)(state$.value);
+
+      return Boolean(bookmark && issue);
+    }),
+    map(action => {
+      // We have to cast the values here because we checked if the bookmark and the issue exist in the `filter` part
+      const bookmark = getBookmarkObjectById(action.issueId)(
+        state$.value,
+      ) as BookmarkType;
+      const issue = getBookmarkById(action.issueId)(
+        state$.value,
+      ) as GithubIssueResponse;
+
+      return fetchCommentsInit(
+        bookmark.username,
+        bookmark.repo,
+        issue.number,
+        1,
+      );
+    }),
+  );
+
 const rootEpic = combineEpics(
   fetchReposEpic,
   streamToFetches,
   fetchIssuesEpic,
   pagingIssuesEpic,
   filteringIssuesEpic,
+  sortingIssuesEpic,
+  fetchCommentsEpic,
+  pagingCommentsEpic,
   pagingReposEpic,
   fetchOrganizationsEpic,
   pagingOrganizationsEpic,
@@ -200,6 +300,7 @@ const rootEpic = combineEpics(
   loadOrganizationEpic,
   bookmarkWithIssue,
   selectOrganizationEpic,
+  fetchBookmarksCommentsEpic,
 );
 
 export default rootEpic;

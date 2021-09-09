@@ -6,7 +6,7 @@ import styles from '../../styles';
 import {ThemeContext} from '../../components/ThemeContext/ThemeContext';
 import BookmarksList from '../../components/BookmarksList/BookmarksList';
 import {useDispatch} from 'react-redux';
-import {removeBookmark} from '../../actions';
+import {fetchBookmarkComments, removeBookmark} from '../../actions';
 
 type ScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -19,9 +19,10 @@ const IssuesBrowserScreen = ({navigation}: ScreenProps) => {
 
   const handleSelectIssue = useCallback(
     (issue: GithubIssueResponse) => {
+      dispatch(fetchBookmarkComments(issue.id));
       navigation.navigate('IssueViewer', {issueId: issue.id, isBookmark: true});
     },
-    [navigation],
+    [navigation, dispatch],
   );
 
   const handleRemoveBookmark = useCallback(

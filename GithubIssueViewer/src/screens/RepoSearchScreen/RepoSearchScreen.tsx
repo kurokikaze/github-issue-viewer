@@ -22,6 +22,11 @@ import OrgsList from '../../components/OrgsList/OrgsList';
 import {getOrgsUsername, getReposOrganization} from '../../selectors';
 
 import styles from './styles';
+import {FILTER_OPEN} from '../../components/IssuesFilter/IssuesFilter';
+import {
+  SORT_DIRECTION_ASC,
+  SORT_NONE,
+} from '../../components/IssuesSorter/IssuesSorter';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'Settings'>;
 
@@ -36,7 +41,12 @@ const RepoSearchScreen = ({navigation}: ScreenProps) => {
 
   const handleSelectRepo = useCallback(
     (repo: GithubRepositoryResponse) => {
-      dispatch(fetchIssuesInit(repo.owner.login, repo.name));
+      dispatch(
+        fetchIssuesInit(repo.owner.login, repo.name, 1, FILTER_OPEN, {
+          field: SORT_NONE,
+          direction: SORT_DIRECTION_ASC,
+        }),
+      );
       navigation.navigate('IssuesBrowser');
     },
     [navigation, dispatch],
@@ -56,6 +66,9 @@ const RepoSearchScreen = ({navigation}: ScreenProps) => {
         contentInsetAdjustmentBehavior="automatic"
         style={theme.containerStyle}>
         <View style={theme.containerStyle}>
+          <Text style={[theme.textStyle, styles.listHeader]}>
+            Enter username to fetch repositories
+          </Text>
           <SearchInput
             text={repoSearchText}
             onChangeText={text => {

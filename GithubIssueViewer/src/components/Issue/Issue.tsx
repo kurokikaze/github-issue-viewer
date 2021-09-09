@@ -51,6 +51,13 @@ const Issue = ({
             Updated {formatDistanceToNow(new Date(issue.updated_at))} ago
           </Text>
         )}
+        {issue.comments > 0 ? (
+          <Text style={[theme.textStyle, styles.issueDate]}>
+            Comments: {issue.comments}
+          </Text>
+        ) : (
+          <Text style={[theme.textStyle, styles.issueDate]}>No comments</Text>
+        )}
       </TouchableOpacity>
       {canBookmark && onBookmark ? (
         <View style={styles.bookmarkButtonContainer}>

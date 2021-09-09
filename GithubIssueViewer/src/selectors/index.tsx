@@ -10,6 +10,7 @@ export const getIssuesPagination = (state: RootState) =>
 export const getIssuesPage = (state: RootState) => state.issues.currentPage;
 export const getIssuesLoading = (state: RootState) => state.issues.loading;
 export const getIssuesFilter = (state: RootState) => state.issues.filter;
+export const getIssuesSorting = (state: RootState) => state.issues.sorting;
 
 export const getRepos = (state: RootState) => state.repos.list;
 export const getReposOrganization = (state: RootState) =>
@@ -45,5 +46,20 @@ export const getBookmarks = (state: RootState) =>
 export const getBookmarkedIds = (state: RootState) =>
   state.bookmarks.bookmarks.map(bookmark => bookmark.issue);
 
+export const getBookmarkObjectById = (issueId: number) => (state: RootState) =>
+  state.bookmarks.bookmarks.find(({issue}) => issue === issueId);
+
 export const getBookmarkById = (issueId: number) => (state: RootState) =>
   state.bookmarks.issues.find(({id}) => id === issueId);
+
+export const getBookmarkRepo = (issueId: number) => (state: RootState) =>
+  state.bookmarks.bookmarks.find(({issue}) => issue === issueId)?.repo;
+
+export const getCommentsLoading = (state: RootState) => state.comments.loading;
+export const getComments = (state: RootState) => state.comments.list;
+export const getCommentsPagination = (state: RootState) =>
+  state.comments.pagination;
+export const getCommentsPage = (state: RootState) => state.comments.currentPage;
+
+export const getCommentsIssueNumber = (state: RootState) =>
+  state.comments.issueNumber;

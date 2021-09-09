@@ -1,6 +1,8 @@
 import {FilterType, FILTER_ALL} from '../components/IssuesFilter/IssuesFilter';
+import {SortingType} from '../components/IssuesSorter/IssuesSorter';
 import {
   BookmarkType,
+  GithubCommentsResponse,
   GithubIssueResponse,
   GithubIssuesResponse,
   GithubOrganizationResponse,
@@ -29,7 +31,16 @@ export const FETCH_ISSUES_INIT = 'actions/fetch_issues_init';
 export const FETCH_ISSUES_SUCCESS = 'actions/fetch_issues_success';
 export const FETCH_ISSUES_FAILURE = 'actions/fetch_issues_failure';
 export const FETCH_ISSUES_PAGE = 'actions/fetch_issues_page';
+
+export const FETCH_COMMENTS_INIT = 'actions/fetch_comments_init';
+export const FETCH_COMMENTS_SUCCESS = 'actions/fetch_comments_success';
+export const FETCH_COMMENTS_FAILURE = 'actions/fetch_comments_failure';
+export const FETCH_COMMENTS_PAGE = 'actions/fetch_comments_page';
+
+export const FETCH_BOOKMARK_COMMENTS = 'actions/fetch_bookmarks_comments';
+
 export const CHANGE_ISSUES_FILTER = 'actions/change_issues_filter';
+export const CHANGE_ISSUES_SORTER = 'actions/change_issues_sorter';
 
 export const FETCH_SINGLE_ISSUE_INIT = 'actions/fetch_single_issue_init';
 export const FETCH_SINGLE_ISSUE_SUCCESS = 'actions/fetch_single_issue_success';
@@ -76,6 +87,88 @@ export const selectOrganization = (
 ): SelectOrganizationAction => ({
   type: SELECT_ORGANIZATION,
   org,
+});
+
+/* Fetching comments */
+export type FetchCommentsInitAction = {
+  type: typeof FETCH_COMMENTS_INIT;
+  user: string;
+  repo: string;
+  issueNumber: number;
+  page: number;
+};
+
+export const fetchCommentsInit = (
+  user: string,
+  repo: string,
+  issueNumber: number,
+  page: number,
+): FetchCommentsInitAction => ({
+  type: FETCH_COMMENTS_INIT,
+  user,
+  repo,
+  issueNumber,
+  page,
+});
+
+export type FetchCommentsSuccessAction = {
+  type: typeof FETCH_COMMENTS_SUCCESS;
+  username: string;
+  repo: string;
+  issueNumber: number;
+  pagination: PaginationLinksType;
+  page: number;
+  comments: GithubCommentsResponse;
+};
+
+export const fetchCommentsSuccess = (
+  username: string,
+  repo: string,
+  issueNumber: number,
+  pagination: PaginationLinksType,
+  page: number,
+  comments: GithubCommentsResponse,
+): FetchCommentsSuccessAction => ({
+  type: FETCH_COMMENTS_SUCCESS,
+  username,
+  repo,
+  issueNumber,
+  pagination,
+  page,
+  comments,
+});
+
+type FetchCommentsFailureAction = FailureAction & {
+  type: typeof FETCH_COMMENTS_FAILURE;
+};
+
+export const fetchCommentsFailure = (
+  err: string,
+): FetchCommentsFailureAction => ({
+  type: FETCH_COMMENTS_FAILURE,
+  err,
+});
+
+export type FetchCommentsPageAction = {
+  type: typeof FETCH_COMMENTS_PAGE;
+  page: number;
+};
+
+export const fetchCommentsPage = (page: number): FetchCommentsPageAction => ({
+  type: FETCH_COMMENTS_PAGE,
+  page,
+});
+
+export type FetchBookmarkCommentsAction = {
+  type: typeof FETCH_BOOKMARK_COMMENTS;
+  issueId: number;
+};
+
+export const fetchBookmarkComments = (
+  issueId: number,
+): FetchBookmarkCommentsAction => ({
+  type: FETCH_BOOKMARK_COMMENTS,
+  issueId,
 });
 
 /* Fetching organizations */
@@ -236,6 +329,7 @@ export type FetchIssuesInitAction = {
   repo: string;
   page: number;
   filter: FilterType;
+  sorting: SortingType;
 };
 
 export const fetchIssuesInit = (
@@ -243,12 +337,14 @@ export const fetchIssuesInit = (
   repo: string,
   page: number = 1,
   filter: FilterType = FILTER_ALL,
+  sorting: SortingType,
 ): FetchIssuesInitAction => ({
   type: FETCH_ISSUES_INIT,
   user,
   repo,
   page,
   filter,
+  sorting,
 });
 
 export type FetchIssuesPageAction = {
@@ -269,6 +365,18 @@ export type ChangeIssuesFilter = {
 export const changeIssuesFilter = (filter: FilterType): ChangeIssuesFilter => ({
   type: CHANGE_ISSUES_FILTER,
   filter,
+});
+
+export type ChangeIssuesSorting = {
+  type: typeof CHANGE_ISSUES_SORTER;
+  sorter: SortingType;
+};
+
+export const changeIssuesSorting = (
+  sorter: SortingType,
+): ChangeIssuesSorting => ({
+  type: CHANGE_ISSUES_SORTER,
+  sorter,
 });
 
 export type FetchIssuesSuccessAction = {
@@ -390,6 +498,11 @@ export type Action =
   | FetchOrganizationsFailureAction
   | FetchOrganizationsPageAction
   | ChangeIssuesFilter
+  | ChangeIssuesSorting
+  | FetchCommentsInitAction
+  | FetchCommentsSuccessAction
+  | FetchCommentsFailureAction
+  | FetchBookmarkCommentsAction
   | LoadOrganizationInitAction
   | LoadOrganizationSuccessAction
   | LoadBookmarksInitAction

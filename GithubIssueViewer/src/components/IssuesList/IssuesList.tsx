@@ -19,6 +19,7 @@ import {Pagination} from '../Pagination/Pagination';
 import {IssuesFilter} from '../IssuesFilter/IssuesFilter';
 import Issue from '../Issue/Issue';
 import {isPaginationUsable} from '../../utils';
+import IssuesSorter from '../IssuesSorter/IssuesSorter';
 
 type IssuesListProps = {
   onSelectIssue: (issue: GithubIssueResponse) => void;
@@ -49,6 +50,7 @@ const IssuesList = ({
         Issues of {username}/{repo}
       </Text>
       <IssuesFilter />
+      <IssuesSorter />
       {isPaginationUsable(pagination) ? (
         <Pagination
           links={pagination}
@@ -75,6 +77,16 @@ const IssuesList = ({
                 }
               />
             ))}
+          {issues.length === 0 && (
+            <View>
+              <Text style={[theme.textStyle, styles.issuesCount]}>
+                No issues to display
+              </Text>
+              <Text style={[theme.textStyle]}>
+                Choose organization and user in Settings
+              </Text>
+            </View>
+          )}
         </ScrollView>
         {isLoading && (
           <ActivityIndicator style={styles.overlayIndicator} size={200} />

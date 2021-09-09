@@ -9,12 +9,12 @@ import Issue from '../Issue/Issue';
 
 import styles from './styles';
 
-type IssuesListProps = {
+type BookmarksListProps = {
   onSelectIssue: (issue: GithubIssueResponse) => void;
   onRemoveBookmark: (issueId: number) => void;
 };
 
-const BookmarksList = ({onSelectIssue, onRemoveBookmark}: IssuesListProps) => {
+const BookmarksList = ({onSelectIssue, onRemoveBookmark}: BookmarksListProps) => {
   const bookmarks = useSelector(getBookmarks);
 
   const theme = useContext(ThemeContext);
