@@ -54,9 +54,10 @@ const OrgsList = ({onSelectOrg}: ReposListProps) => {
         <ScrollView style={styles.orgsContainer}>
           {githubOrgs.length > 0 &&
             githubOrgs.map(org => (
-              <View key={org.id}>
+              <View key={org.id} data-testID={`org-${org.id}`}>
                 <Text
                   onPress={() => onSelectOrg(org)}
+                  data-testID="select-org"
                   style={[theme.textStyle, styles.orgName, linkRepoStyle]}>
                   {org.login}{' '}
                 </Text>

@@ -324,7 +324,7 @@ exports[`IssuesList renders correctly 1`] = `
               }
             >
               Created 
-              5 days
+              some time ago
                ago
             </Text>
             <Text
@@ -342,7 +342,7 @@ exports[`IssuesList renders correctly 1`] = `
               }
             >
               Updated 
-              about 7 hours
+              some time ago
                ago
             </Text>
           </View>
@@ -462,7 +462,7 @@ exports[`IssuesList renders correctly 1`] = `
               }
             >
               Created 
-              5 days
+              some time ago
                ago
             </Text>
             <Text
@@ -480,7 +480,7 @@ exports[`IssuesList renders correctly 1`] = `
               }
             >
               Updated 
-              about 7 hours
+              some time ago
                ago
             </Text>
           </View>

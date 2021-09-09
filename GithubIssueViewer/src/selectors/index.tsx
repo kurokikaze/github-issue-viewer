@@ -36,10 +36,10 @@ export const getIssueById = (issueId: number) => (state: RootState) =>
 export const getBookmarks = (state: RootState) =>
   state.bookmarks.bookmarks
     .map(({issue, repo, username}) => ({
-			issue: state.bookmarks.issues.find(i => i.id === issue),
-			repo,
-			username,
-		}))
+      issue: state.bookmarks.issues.find(i => i.id === issue),
+      repo,
+      username,
+    }))
     .filter(Boolean as any as UndefinedTypeGuard);
 
 export const getBookmarkedIds = (state: RootState) =>

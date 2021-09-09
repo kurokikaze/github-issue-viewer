@@ -8,7 +8,10 @@ import BookmarksList from '../../components/BookmarksList/BookmarksList';
 import {useDispatch} from 'react-redux';
 import {removeBookmark} from '../../actions';
 
-type ScreenProps = NativeStackScreenProps<RootStackParamList, 'IssuesBrowser'>;
+type ScreenProps = NativeStackScreenProps<
+  RootStackParamList,
+  'BookmarksBrowser'
+>;
 
 const IssuesBrowserScreen = ({navigation}: ScreenProps) => {
   const theme = useContext(ThemeContext);

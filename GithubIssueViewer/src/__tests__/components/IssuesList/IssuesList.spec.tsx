@@ -8,7 +8,15 @@ import configureMockStore from 'redux-mock-store';
 import IssuesList from '../../../components/IssuesList/IssuesList';
 import Issue from '../../../components/Issue/Issue';
 import {testIssue} from '../../../testData/testIssue';
+import {formatDistanceToNow} from 'date-fns';
 
+jest.mock('date-fns');
+
+const mockDistanceFormatter = formatDistanceToNow as jest.MockedFunction<
+  typeof formatDistanceToNow
+>;
+
+mockDistanceFormatter.mockReturnValue('some time ago');
 const mockStore = configureMockStore([]);
 
 describe('IssuesList', () => {

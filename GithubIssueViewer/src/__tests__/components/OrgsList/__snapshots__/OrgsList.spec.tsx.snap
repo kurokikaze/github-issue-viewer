@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ReposList renders correctly (loading) 1`] = `
+exports[`OrgsList renders correctly (loading) 1`] = `
 <View
   style={
     Array [
@@ -27,10 +27,10 @@ exports[`ReposList renders correctly (loading) 1`] = `
     >
       <View>
         <View
-          data-testID="repo-215071064"
+          data-testID="org-728"
         >
           <Text
-            data-testID="select-repo"
+            data-testID="select-org"
             onPress={[Function]}
             style={
               Array [
@@ -52,39 +52,8 @@ exports[`ReposList renders correctly (loading) 1`] = `
               ]
             }
           >
-            amadeus-bot
+            revelation
              
-          </Text>
-        </View>
-        <View
-          data-testID="repo-155540694"
-        >
-          <Text
-            data-testID="select-repo"
-            onPress={[Function]}
-            style={
-              Array [
-                Object {
-                  "color": "#333",
-                },
-                Object {
-                  "display": "flex",
-                  "flex": 1,
-                  "flexWrap": "wrap",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 20,
-                  "marginTop": 18,
-                },
-                Object {
-                  "color": "#056aff",
-                },
-              ]
-            }
-          >
-            andor-vis
-             
-            (5 open issues)
           </Text>
         </View>
       </View>
@@ -107,7 +76,7 @@ exports[`ReposList renders correctly (loading) 1`] = `
 </View>
 `;
 
-exports[`ReposList renders correctly (pagination) 1`] = `
+exports[`OrgsList renders correctly (pagination) 1`] = `
 <View
   style={
     Array [
@@ -142,9 +111,7 @@ exports[`ReposList renders correctly (pagination) 1`] = `
             Object {
               "fontSize": 36,
             },
-            Object {
-              "opacity": 0.3,
-            },
+            false,
           ]
         }
       >
@@ -162,9 +129,7 @@ exports[`ReposList renders correctly (pagination) 1`] = `
             Object {
               "fontSize": 36,
             },
-            Object {
-              "opacity": 0.3,
-            },
+            false,
           ]
         }
       >
@@ -225,10 +190,10 @@ exports[`ReposList renders correctly (pagination) 1`] = `
     >
       <View>
         <View
-          data-testID="repo-215071064"
+          data-testID="org-728"
         >
           <Text
-            data-testID="select-repo"
+            data-testID="select-org"
             onPress={[Function]}
             style={
               Array [
@@ -250,39 +215,8 @@ exports[`ReposList renders correctly (pagination) 1`] = `
               ]
             }
           >
-            amadeus-bot
+            revelation
              
-          </Text>
-        </View>
-        <View
-          data-testID="repo-155540694"
-        >
-          <Text
-            data-testID="select-repo"
-            onPress={[Function]}
-            style={
-              Array [
-                Object {
-                  "color": "#333",
-                },
-                Object {
-                  "display": "flex",
-                  "flex": 1,
-                  "flexWrap": "wrap",
-                  "fontSize": 18,
-                  "fontWeight": "normal",
-                  "lineHeight": 20,
-                  "marginTop": 18,
-                },
-                Object {
-                  "color": "#056aff",
-                },
-              ]
-            }
-          >
-            andor-vis
-             
-            (5 open issues)
           </Text>
         </View>
       </View>
@@ -322,9 +256,7 @@ exports[`ReposList renders correctly (pagination) 1`] = `
             Object {
               "fontSize": 36,
             },
-            Object {
-              "opacity": 0.3,
-            },
+            false,
           ]
         }
       >
@@ -342,9 +274,7 @@ exports[`ReposList renders correctly (pagination) 1`] = `
             Object {
               "fontSize": 36,
             },
-            Object {
-              "opacity": 0.3,
-            },
+            false,
           ]
         }
       >
@@ -396,7 +326,7 @@ exports[`ReposList renders correctly (pagination) 1`] = `
 </View>
 `;
 
-exports[`ReposList renders correctly 1`] = `
+exports[`OrgsList renders correctly 1`] = `
 <View
   style={
     Array [
@@ -423,10 +353,10 @@ exports[`ReposList renders correctly 1`] = `
     >
       <View>
         <View
-          data-testID="repo-215071064"
+          data-testID="org-728"
         >
           <Text
-            data-testID="select-repo"
+            data-testID="select-org"
             onPress={[Function]}
             style={
               Array [
@@ -448,15 +378,15 @@ exports[`ReposList renders correctly 1`] = `
               ]
             }
           >
-            amadeus-bot
+            revelation
              
           </Text>
         </View>
         <View
-          data-testID="repo-155540694"
+          data-testID="org-1375"
         >
           <Text
-            data-testID="select-repo"
+            data-testID="select-org"
             onPress={[Function]}
             style={
               Array [
@@ -478,9 +408,8 @@ exports[`ReposList renders correctly 1`] = `
               ]
             }
           >
-            andor-vis
+            cdr
              
-            (5 open issues)
           </Text>
         </View>
       </View>
