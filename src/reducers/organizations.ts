@@ -38,6 +38,8 @@ function reposReducer(
     case FETCH_ORGANIZATIONS_INIT:
       return {
         ...state,
+        list: [],
+        username: '',
         loading: true,
       };
     case FETCH_ORGANIZATIONS_SUCCESS:

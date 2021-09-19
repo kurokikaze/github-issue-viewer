@@ -17,6 +17,12 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 80,
   },
+  userFound: {
+    borderColor: 'rgb(0,193,118)',
+  },
+  userNotFound: {
+    borderColor: 'rgb(255,0,60)',
+  },
 });
 
 export default styles;

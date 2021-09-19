@@ -51,6 +51,11 @@ const Issue = ({
             Updated {formatDistanceToNow(new Date(issue.updated_at))} ago
           </Text>
         )}
+        {issue.closed_at && (
+          <Text style={[theme.textStyle, styles.issueDate]}>
+            Closed {formatDistanceToNow(new Date(issue.closed_at))} ago
+          </Text>
+        )}
         {issue.comments > 0 ? (
           <Text style={[theme.textStyle, styles.issueDate]}>
             Comments: {issue.comments}

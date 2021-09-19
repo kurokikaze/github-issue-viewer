@@ -154,7 +154,7 @@ exports[`BookmarksBrowserScreen renders correctly 1`] = `
                       }
                     >
                       Created 
-                      6 days
+                      16 days
                        ago
                     </Text>
                     <Text
@@ -172,7 +172,7 @@ exports[`BookmarksBrowserScreen renders correctly 1`] = `
                       }
                     >
                       Updated 
-                      about 19 hours
+                      11 days
                        ago
                     </Text>
                     <Text

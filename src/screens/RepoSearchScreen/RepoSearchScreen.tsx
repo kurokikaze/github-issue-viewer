@@ -76,14 +76,22 @@ const RepoSearchScreen = ({navigation}: ScreenProps) => {
               dispatch(searchUserStream(text));
             }}
           />
-          <Text style={[theme.textStyle, styles.listHeader]}>
-            Organizations
-          </Text>
-          <OrgsList onSelectOrg={handleSelectOrg} />
+          {username !== '' ? (
+            <>
+              <Text style={[theme.textStyle, styles.listHeader]}>
+                Organizations of {username}
+              </Text>
+              <OrgsList onSelectOrg={handleSelectOrg} />
+            </>
+          ) : (
+            <Text style={[theme.textStyle, styles.listHeader]}>
+              No such user
+            </Text>
+          )}
           {organization ? (
             <View>
               <Text style={[theme.textStyle, styles.listHeader]}>
-                Repositories
+                Repositories of {organization}
               </Text>
               <ReposList onSelectRepo={handleSelectRepo} />
             </View>

@@ -56,13 +56,9 @@ const ReposList = ({onSelectRepo}: ReposListProps) => {
             githubRepos.map(repo => (
               <View key={repo.id} data-testID={`repo-${repo.id}`}>
                 <Text
-                  onPress={() => repo.has_issues && onSelectRepo(repo)}
+                  onPress={() => onSelectRepo(repo)}
                   data-testID="select-repo"
-                  style={[
-                    theme.textStyle,
-                    styles.repoName,
-                    repo.has_issues && linkRepoStyle,
-                  ]}>
+                  style={[theme.textStyle, styles.repoName, linkRepoStyle]}>
                   {repo.name}{' '}
                   {repo.open_issues_count > 0 &&
                     `(${pluralize({

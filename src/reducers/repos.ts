@@ -44,6 +44,7 @@ function reposReducer(
     case FETCH_REPOS_INIT:
       return {
         ...state,
+        list: [],
         loading: true,
       };
     case FETCH_REPOS_SUCCESS:
