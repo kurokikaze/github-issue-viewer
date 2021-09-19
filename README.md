@@ -1,3 +1,15 @@
+# Running the project
+
+The project is run by execuing `yarn start` to start Metro and then (for connected android or emulator) executing `yarn android` in the separate console.
+
+More about running on iOS simulator: https://reactnative.dev/docs/running-on-simulator-ios
+
+# Building the project
+
+The Android build is done with either `yarn build-android` or `yarn build-android-windows` (in Windows). The apk files will be in `app/build/outputs/apk`.
+
+The iOS version is built with CocoaPods, the podfile is in `ios/Podfile`.
+
 # Architecture overview
 
 The project uses modern react stack: Typescript, React, Redux, Redux-Observable for epics, jest for unit tests.

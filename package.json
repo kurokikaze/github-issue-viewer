@@ -7,6 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest --coverage",
+		"build-android": ".\\android\\gradlew",
+		"build-android-windows": ".\\android\\gradlew.bat",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
