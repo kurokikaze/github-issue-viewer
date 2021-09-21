@@ -4,14 +4,22 @@ import {Provider} from 'react-redux';
 import renderer from 'react-test-renderer';
 import configureMockStore from 'redux-mock-store';
 import BookmarksBrowserScreen from '../../../screens/BookmarksBrowserScreen/BookmarksBrowserScreen';
-
-const mockStore = configureMockStore([]);
-
+import {formatDistanceToNow} from 'date-fns';
 // Note: test renderer must be required after react-native.
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../../types';
 import {RouteProp} from '@react-navigation/core';
 import {testIssue} from '../../../testData/testIssue';
+
+const mockStore = configureMockStore([]);
+
+jest.mock('date-fns');
+
+const mockDistanceFormatter = formatDistanceToNow as jest.MockedFunction<
+  typeof formatDistanceToNow
+>;
+
+mockDistanceFormatter.mockReturnValue('some time ago');
 
 describe('BookmarksBrowserScreen', () => {
   it('renders correctly', () => {

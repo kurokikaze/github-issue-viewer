@@ -6,7 +6,7 @@ type BookmarksShape = {
   issues: GithubIssuesResponse;
 };
 
-const initialState = {
+export const initialState = {
   bookmarks: [],
   issues: [],
 };

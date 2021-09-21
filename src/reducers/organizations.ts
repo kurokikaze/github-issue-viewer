@@ -15,7 +15,7 @@ export type OrganizationsShape = {
   currentPage: number;
 };
 
-const initialState = {
+export const initialState = {
   username: '',
   list: [],
   pagination: {

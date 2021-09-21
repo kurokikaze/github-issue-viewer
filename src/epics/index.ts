@@ -50,7 +50,7 @@ import {
 } from '../selectors';
 import {BookmarkType, GithubIssueResponse} from '../types';
 
-const USERS_SEARCH_DEBOUNCE = 600;
+export const USERS_SEARCH_DEBOUNCE = 600;
 
 export const fetchUserEpic = (action$: Observable<Action>) =>
   action$.pipe(

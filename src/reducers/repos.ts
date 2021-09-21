@@ -16,7 +16,7 @@ export type ReposShape = {
   currentPage: number;
 };
 
-const initialState = {
+export const initialState = {
   organization: '',
   list: [],
   pagination: {

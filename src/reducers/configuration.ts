@@ -4,7 +4,7 @@ type ConfigurationShape = {
   organization: string;
 };
 
-const initialState = {
+export const initialState = {
   organization: '',
 };
 

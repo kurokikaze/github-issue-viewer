@@ -1,10 +1,19 @@
 import {combineReducers} from 'redux';
-import issuesReducer from './issues';
-import reposReducer from './repos';
-import configurationReducer from './configuration';
-import bookmarksReducer from './bookmarks';
-import organizationsReducer from './organizations';
-import commentsReducer from './comments';
+import {initialState as issues, default as issuesReducer} from './issues';
+import {initialState as repos, default as reposReducer} from './repos';
+import {
+  initialState as configuration,
+  default as configurationReducer,
+} from './configuration';
+import {
+  initialState as bookmarks,
+  default as bookmarksReducer,
+} from './bookmarks';
+import {
+  initialState as organizations,
+  default as organizationsReducer,
+} from './organizations';
+import {initialState as comments, default as commentsReducer} from './comments';
 
 const rootReducer = combineReducers({
   repos: reposReducer,
@@ -18,3 +27,12 @@ const rootReducer = combineReducers({
 export type RootState = ReturnType<typeof rootReducer>;
 
 export default rootReducer;
+
+export const initialState = {
+  issues,
+  repos,
+  configuration,
+  bookmarks,
+  organizations,
+  comments,
+};

@@ -1,6 +1,6 @@
 import {GithubRepositoryResponse, GithubUserResponse} from '../types';
 
-const testOwner: GithubUserResponse = {
+export const testOwner: GithubUserResponse = {
   login: 'kurokikaze',
   id: 92214,
   node_id: 'MDQ6VXNlcjkyMjE0',
