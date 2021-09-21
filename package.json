@@ -7,8 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest --coverage",
-		"build-android": ".\\android\\gradlew assembleRelease",
-		"build-android-windows": ".\\android\\gradlew.bat assembleRelease",
+    "build-android": ".\\android\\gradlew assembleRelease",
+    "build-android-windows": ".\\android\\gradlew.bat assembleRelease",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
@@ -45,6 +45,7 @@
     "babel-jest": "^26.6.3",
     "eslint": "^7.14.0",
     "jest": "^26.6.3",
+    "jest-fetch-mock": "^3.0.3",
     "metro-react-native-babel-preset": "^0.66.0",
     "react-native-codegen": "^0.0.7",
     "react-test-renderer": "17.0.2",
@@ -56,6 +57,7 @@
   },
   "jest": {
     "preset": "react-native",
+		"setupFiles": ["./jest.setup.js"],
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/$1"
     },
