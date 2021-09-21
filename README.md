@@ -6,7 +6,7 @@ More about running on iOS simulator: https://reactnative.dev/docs/running-on-sim
 
 # Building the project
 
-The Android build is done with either `yarn build-android` or `yarn build-android-windows` (in Windows). The apk files will be in `app/build/outputs/apk`.
+The Android build is done with either `yarn build-android` or `yarn build-android-windows` (in Windows). The apk files will be in `app/build/outputs/apk/release`.
 
 The iOS version is built with CocoaPods, the podfile is in `ios/Podfile`.
 
